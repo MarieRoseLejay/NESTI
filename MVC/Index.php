@@ -6,10 +6,10 @@
     // Contrôle des liens et de la redirection via le routeur
     require 'Controller/Router.php';
     if(isset($_GET['page'])){
-        require getLien($_GET['page']);
+        router($_GET['page']);
     }
     else{
-        require 'View/Content_Home.php';
+        router('default');
     }
  
 ?>

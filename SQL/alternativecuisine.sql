@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 23 Mai 2015 à 17:57
+-- Généré le :  Sam 23 Mai 2015 à 23:44
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `Temps_Preparation` varchar(6) NOT NULL DEFAULT '30 min',
   `Temps_Cuisson` varchar(6) NOT NULL DEFAULT '30 min',
   `Note` int(10) unsigned NOT NULL DEFAULT '0',
-  `Difficulté` int(10) unsigned NOT NULL DEFAULT '0',
+  `Difficulte` int(10) unsigned NOT NULL DEFAULT '0',
   `Budget` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idRecette`,`Image_idImage`),
   KEY `fk_Recette_Image1_idx` (`Image_idImage`)
@@ -233,8 +233,8 @@ CREATE TABLE IF NOT EXISTS `recette` (
 -- Contenu de la table `recette`
 --
 
-INSERT INTO `recette` (`idRecette`, `Titre`, `Format`, `PrixHT`, `Resume`, `Contenu`, `Image_idImage`, `Temps_Preparation`, `Temps_Cuisson`, `Note`, `Difficulté`, `Budget`) VALUES
-(1, 'Gâche Vendéenne', 'Ecrit', '1.00', 'Comment faire une bonne gâche vendéenne !', 'Faire bouillir le lait avec la demi gousse de vanille fendue en deux.\r\n\r\nDans une grande terrine, versez la farine, faire un puits, ajoutez le sel, cassez les 2 oeufs, ajoutez le sucre et le beurre ramolli détaillé en petits morceaux.\r\n\r\nDélayez la levure dans un verre de lait tiède, travaillez la p', 1, '', '', 0, 0, 0),
+INSERT INTO `recette` (`idRecette`, `Titre`, `Format`, `PrixHT`, `Resume`, `Contenu`, `Image_idImage`, `Temps_Preparation`, `Temps_Cuisson`, `Note`, `Difficulte`, `Budget`) VALUES
+(1, 'Gâche Vendéenne', 'Ecrit', '1.00', 'Comment faire une bonne gâche vendéenne !', 'Faire bouillir le lait avec la demi gousse de vanille fendue en deux.\r\n\r\nDans une grande terrine, versez la farine, faire un puits, ajoutez le sel, cassez les 2 oeufs, ajoutez le sucre et le beurre ramolli détaillé en petits morceaux.\r\n\r\nDélayez la levure dans un verre de lait tiède, travaillez la p', 1, '30', '30', 5, 2, 1),
 (2, 'Clafoutis aux tomates cerises', 'Ecrit', '1.00', 'Comment faire un bon clafoutis aux tomates cerises !', 'Etaler la pâte brisée dans un moule à tarte. Disposer les tomates sur le fond. Ciseler le persil et en parsemer les tomates.\r\n\r\nBattre les œufs et la crème fraîche. Saler, poivrer. Verser la préparation sur la tarte et cuire au four (180°C) pendant une demi-heure.', 2, '', '', 0, 0, 0),
 (3, 'Chou rouge aux pommes', 'Ecrit', '1.00', 'Comment préparer un bon chou rouge aux pommes !  ', '1 Lavez et taillez le chou en lanières. Pelez et coupez les oignons en fines rondelles. Pelez les pommes, coupez-les en quartiers, épépinez-les et émincez-les en fines lamelles. Préchauffez le four th. 6 (180 °C).\r\n2 Déposez au fond de 4 moules à soufflé individuels un petit morceau de lard fumé. Ta', 3, '', '', 0, 0, 0),
 (4, 'Filets de cabillaud sauce citron', 'Ecrit', '1.00', 'Comment  cuisiner de bons filets de cabillaud à la sauce citron !', '1 Brossez les citrons sous l’eau chaude. Prélevez le zeste et pressez le jus de l’un, coupez l’autre en rondelles.\r\n2 Dans une sauteuse, faites fondre le beurre et faites-y dorer les filets de cabillaud 5 minutes sur chaque face. Saupoudrez de gingembre, salez et poivrez.\r\n3 Ajoutez la sauce soja, l', 4, '', '', 0, 0, 0),
