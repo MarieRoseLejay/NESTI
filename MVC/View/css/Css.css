@@ -1,6 +1,7 @@
 /**** Skeleton ****/
 body{
-    background-image: url("/SiteWebVenteEnLigne/MVC/Images/Fond.jpg");
+    //background-image: url("/SiteWebVenteEnLigne/MVC/Images/Fond.jpg");
+    background: #98b345;
 }
 
 [class*="col-"], .row, header, body, footer{
@@ -11,23 +12,16 @@ body{
     //border : solid 1px blue;
     padding : 0px;
 }
-#content{
-    //border : solid 1px black;
-    padding : 0px;
-}
-#content_article{
-    //border : solid 1px palevioletred;
-    padding : 0px;
-}
 .row, header, body, footer{
     margin: 0px;
 }
-a{
-    color: black;
-}
+
 /*** Banner ***/
 header{
-    //background: #fbf7e9;
+    background: #fbf7e9;
+}
+#header{
+    border-bottom: solid 1px #f8b053;
 }
 #header_title, #research, #cart, #login, #header{
     min-height: 65px;
@@ -43,25 +37,48 @@ header{
     width: 57px;
 }
 /** Menu **/
+.highlighted{
+    background: orange;
+}
+
+#menu >[class*="col-"]{
+    //border: 1px solid black;
+    padding: 3px;
+}
 #menu, #menu_home, #menu_menu2_recipe, #menu_menu2_ingredient, #menu_menu2_utensil, #menu_detail{
+    //border: 1px solid black;
+    //padding: 5px;
     background: #98b345;
     color: white;
     text-align: center;
 }
-/** end Menu **/
+.menu_sous-menu{
+    background: #9fbe3e;
+    text-align: center;
+}
+.menu_sous-menu a{
+    color: white;
+}
+.navbar-fixed-top{
+    border: none;
+}/** end Menu **/
 /*** end Banner ***/
 #content{
-    padding-top : 90px;
+    padding : 0px;
+    padding-top : 120px;
 }
 #content_article{
-    background: rgba(255,255,255,0.5);
-    border: solid 1px #98b345;
+    background: rgba(251,247,233,1);
+    border: solid 1px #f8b053;
     min-height: 700px;
+    padding: 10px;
 }
-#footer, a{
+#footer{
     background: #98b345;
-    color: white;
     text-align: center;
+}
+#footer a{
+    color: white;
 }/**** end Skeleton ****/
 
 /**** Home ****/
@@ -89,7 +106,7 @@ header{
     text-align: center;   
 }
 #category_article{
-    border : 1px solid violet;
+    //border : 1px solid violet;
     margin: 15px;
     margin-right: 43px;
     margin-left: 43px; 
@@ -102,11 +119,14 @@ header{
     margin-bottom: 5px;
     text-align: center;
 }
-#category_article_img{
-    height: 200px;
-    width: 200px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+
+.category_article_img{
+    height: 200px; 
+    width:100%; 
+    margin: 5px;
+    background-repeat: no-repeat; 
+    background-position:center center; 
+    background-size:contain;
 }/**** end Category ****/
 
 /**** Article ****/

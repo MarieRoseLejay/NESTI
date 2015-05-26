@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 23 Mai 2015 à 23:44
+-- Généré le :  Lun 25 Mai 2015 à 23:28
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -195,13 +195,13 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 --
 
 INSERT INTO `ingredient` (`idIngredient`, `NomIngredient`, `PrixUnitaireHT`, `Marque`, `Image_idImage`) VALUES
-(1, 'Poire', '0.00', 'BonFruit', 11),
-(2, 'Pomme', '0.20', 'BonFruit', 12),
-(3, 'oeuf', '0.00', 'Grosoeuf', 13),
-(4, 'poireau', '0.00', 'Légume', 14),
+(1, 'Poire', '0.00', 'Terroir', 11),
+(2, 'Pomme', '0.20', 'Terroir', 12),
+(3, 'oeuf', '0.00', 'Francinette', 13),
+(4, 'poireau', '0.00', 'Terroir', 14),
 (5, 'farine', '2.00', 'Francinette', 15),
 (6, 'chocolat', '1.00', 'Côte d''os', 16),
-(7, 'lait  1L', '1.00', 'Laitière', 17),
+(7, 'lait  1L', '1.00', 'Francinette', 17),
 (8, 'semoule 1kg', '1.00', 'Francinette', 18),
 (9, 'boeuf 100g', '2.00', 'Fermière', 19),
 (10, 'poulet 100g', '1.00', 'Fermière', 20);
