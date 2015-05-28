@@ -1,24 +1,30 @@
 <?php
-    function router($content_article){
+    function router($page){
         require 'Controller.php';
-        switch($content_article){
+        switch($page){
             case "1":
-                content_Home('recette','ingredient','ustensile');
+                content_Home('1');
                 break;
             case "2":
-                content_Category('Titre','recette','idRecette','Resume');
+                if (isset($_GET['id'])){
+                    $i = $_GET['id'];
+                    content_Article($i,'Titre','recette','Temps_Preparation','Temps_Cuisson','PrixHT','Resume','Contenu','2');
+                }
+                else{
+                    content_Category_Recette();
+                }
                 break;
             case "3":
-                content_Category('NomIngredient','ingredient','idIngredient','Marque');
+                content_Category_Ingredient();
                 break;
             case "4":
-                content_Category('NomUstensile','ustensile','idUstensile','Marque');
+                content_Category_Ustensile();
                 break;
             case "5":
-                content_Article('Titre','recette','idRecette','Temps_Preparation','Temps_Cuisson','PrixHT','Resume','Contenu');
+                content_Article('1','Titre','recette','Temps_Preparation','Temps_Cuisson','PrixHT','Resume','Contenu','2');
                 break;
             default :
-                content_Home('recette','ingredient','ustensile');
+                content_Home('recette','ingredient','ustensile','1');
                 break;
         }
     }

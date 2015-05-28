@@ -15,10 +15,10 @@
         return ($res);
     }
 
-    function getNom($i,$nom,$table,$idTable){
+    function getNom($i,$nom,$table){
         require 'Connection.php';
         //récupération du titre ou nom de l'article de la recette 
-        $query_Nom = 'SELECT '.$nom.' FROM '.$table.' WHERE '.$idTable.' = '.$i.'';
+        $query_Nom = 'SELECT '.$nom.' FROM '.$table.' WHERE id'.ucfirst($table).' = '.$i.'';
         $result_Nom = $pdo->query($query_Nom)->fetchAll();
 
         $res = $result_Nom[0][$nom];
@@ -26,21 +26,21 @@
         return($res);
     }
     
-    function getImage($i,$table,$idTable){
+    function getImage($i,$table){
         require 'Connection.php';
         //récupération de l'image correspondant à la recette
         $query_NomFichierImage = 'SELECT NomFichier FROM image,'.$table
-                .' WHERE image.idImage='.$table.'.Image_idImage AND '.$table.'.'.$idTable.' = '.$i.'';
+                .' WHERE image.idImage='.$table.'.Image_idImage AND '.$table.'.id'.ucfirst($table).' = '.$i.'';
         $result_NomFichierImage = $pdo->query($query_NomFichierImage)->fetchAll();
         
         $res = $result_NomFichierImage[0]['NomFichier'];
         return ($res);
     }
     
-   function getColumn($i,$table,$idTable,$column){
+   function getColumn($i,$table,$column){
         require 'Connection.php';
         //récupération du contenu de la colonne pour la table donnée
-        $query_Column = 'SELECT '.$column.' FROM '.$table.' WHERE '.$idTable.' = '.$i.'';
+        $query_Column = 'SELECT '.$column.' FROM '.$table.' WHERE id'.ucfirst($table).' = '.$i.'';
         $result_Column = $pdo->query($query_Column)->fetchAll();
 
         $res = $result_Column[0][$column];

@@ -11,17 +11,15 @@
             <div class="col-lg-12" id="category_article_title">  
                 <?php echo $noms[$i]; ?>
             </div>
-            
-            <div class="row">
-             <img class="col-lg-10" id="category_article_img" src="Images/<?php echo $images[$i]; ?>" 
-                  alt="img"> </img>
-             <article class="row" id="category_article_text">
+            <div class="clearfix"></div>
+                <div style="height: 200px; width:100%; background-repeat: no-repeat; background-position:center center; background-size:contain; background-image: url('Images/<?php echo $images[$i]; ?>')" >
+                </div>
+            <article class="row" id="category_article_text">
                 <!--p class="col-lg-12" id="category_article_text_stars"> ***** </p-->
                 <p class="col-lg-12" id="category_article_text_p"> 
                     <?php echo $resumes[$i]; ?>
                 </p>
-             </article>
-            </div> 
+            </article>
         </div>
     <?php } ?>
  </div>

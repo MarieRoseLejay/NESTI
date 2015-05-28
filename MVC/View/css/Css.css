@@ -37,17 +37,11 @@ header{
     width: 57px;
 }
 /** Menu **/
-.highlighted{
-    background: orange;
-}
 
-#menu >[class*="col-"]{
-    //border: 1px solid black;
+#menu [class*="col-"]{
     padding: 3px;
 }
-#menu, #menu_home, #menu_menu2_recipe, #menu_menu2_ingredient, #menu_menu2_utensil, #menu_detail{
-    //border: 1px solid black;
-    //padding: 5px;
+#menu, #menu_home, .highlight, #menu_detail{
     background: #98b345;
     color: white;
     text-align: center;
@@ -61,7 +55,11 @@ header{
 }
 .navbar-fixed-top{
     border: none;
-}/** end Menu **/
+}
+.highlighted{
+    background: #9fbe3e;
+}
+/** end Menu **/
 /*** end Banner ***/
 #content{
     padding : 0px;
