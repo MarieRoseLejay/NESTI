@@ -38,7 +38,7 @@
     }
     
    function getColumn($i,$table,$column){
-        require 'Connection.php';
+       require 'Connection.php';
         //récupération du contenu de la colonne pour la table donnée
         $query_Column = 'SELECT '.$column.' FROM '.$table.' WHERE id'.ucfirst($table).' = '.$i.'';
         $result_Column = $pdo->query($query_Column)->fetchAll();
@@ -48,6 +48,33 @@
         return $res;
     }
    
+    function getRecette($i){
+        require 'Connection.php';
+         //récupération du contenu de la colonne pour la table donnée
+        $query_recette = 'SELECT * FROM recette WHERE idRecette = '.$i.'';
+        $result_recette = $pdo->query($query_recette)->fetchAll();
+        
+        return $result_recette;
+    }
+    
+    function getIngredient($i){
+        require 'Connection.php';
+         //récupération du contenu de la colonne pour la table donnée
+        $query_ingredient = 'SELECT * FROM ingredient WHERE idIngredient = '.$i.'';
+        $result_ingredient = $pdo->query($query_ingredient)->fetchAll();
+        
+        return $result_ingredient;
+    }
+    
+    function getUstensile($i){
+        require 'Connection.php';
+         //récupération du contenu de la colonne pour la table donnée
+        $query_ustensile = 'SELECT * FROM ustensile WHERE idUstensile = '.$i.'';
+        $result_ustensile = $pdo->query($query_ustensile)->fetchAll();
+        
+        return $result_ustensile;
+    }
+
     function getDifficulte($i){
         require 'Connection.php';
         //récupération de la difficulté de la recette

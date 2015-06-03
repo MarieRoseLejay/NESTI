@@ -6,8 +6,6 @@
         $ingredient = getIdImageShuffle('ingredient');
         $ustensile = getIdImageShuffle('ustensile');
         
-        //inclusions liés à des problèmes d'architecture non résolus --> résolu
-        
         require 'View/Content_Home.php';
     }
     
@@ -36,28 +34,57 @@
         content_Category('NomUstensile','ustensile','Marque','4');
     }
     
-    //Problème d'architecture : fonction content_Article conçue uniquement pour gérer les articles
-    //fonctions de query appelées pas assez spécifiques -> trop d'arguments à passer à content_Article
-    function content_Article($i,$nom,$table,$preparation,$cuisson,$prix,$resumeRecette,$contenu,$page){
+    function content_Article_Recette($i,$page){
+        $recette = getRecette($i);
+        
+        $titres = $recette[0]['Titre'];
+        $tempsPreparations = $recette[0]['Temps_Preparation']; 
+        $tempsCuissons = $recette[0]['Temps_Cuisson'];
         $difficultes = getDifficulte($i);
         $budgets = getBudget($i);
+        $prixHT = $recette[0]['PrixHT'];
+        $images = getImage($i,'recette');
+        $resumeRecettes = $recette[0]['Resume'];  
+        $contenus = $recette[0]['Contenu'];
         
-        $titres = getNom($i,$nom,$table);
-        $tempsPreparations = getColumn($i,$table,$preparation); 
-        $tempsCuissons = getColumn($i,$table,$cuisson);
-        $prixHT = getColumn($i,$table,$prix);
-        $images = getImage($i,$table);
-        $resumeRecettes = getColumn($i,$table,$resumeRecette);  
-        $contenus = getColumn($i,$table,$contenu);
-        //$recette = getRecette($i);
-        
-        //inclusions liés à des problèmes d'architecture non résolus
         $noms = array();
         for($i = 1; $i <= 6; $i++){
-            $noms[$i] = getNom($i,$nom,$table);
+            $noms[$i] = getNom($i,'Titre','recette');
         }
             
-        require 'View/Content_Article.php';
+        require 'View/Content_Article_Recipe.php';
+    }
+    
+    function content_Article_Ingredient($i,$page){
+        $ingredient = getIngredient($i);
+        
+        $nomsI = $ingredient[0]['NomIngredient'];
+        $prixUnitaireHT = $ingredient[0]['PrixUnitaireHT'];
+        $marques = $ingredient[0]['Marque'];
+        $images = getImage($i,'ingredient');
+        
+        $noms = array();
+        for($i = 1; $i <= 6; $i++){
+            $noms[$i] = getNom($i,'NomIngredient','ingredient');
+        }
+            
+        require 'View/Content_Article_Ingredient.php';
+    }
+    
+    function content_Article_Ustensile($i,$page){
+        $ustensile = getUstensile($i);
+        
+        $nomsU = $ustensile[0]['NomUstensile'];
+        $prixUnitaireHT = $ustensile[0]['PrixUnitaireHT'];
+        $marques = $ustensile[0]['Marque'];
+        $images = getImage($i,'ustensile');
+            
+        $noms = array();
+        for($i = 1; $i <= 6; $i++){
+            $noms[$i] = getNom($i,'NomUstensile','ustensile');
+        }
+        
+        require 'View/Content_Article_Ustensil.php';
     }
 ?>
 

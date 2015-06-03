@@ -41,11 +41,16 @@ header{
 #menu [class*="col-"]{
     padding: 3px;
 }
-#menu, #menu_home, .highlight, #menu_detail{
+#menu, #menu_home, #menu_detail{
     background: #98b345;
     color: white;
     text-align: center;
 }
+
+.highlight{
+   color: white;
+}
+
 .menu_sous-menu{
     background: #9fbe3e;
     text-align: center;
@@ -58,6 +63,9 @@ header{
 }
 .highlighted{
     background: #9fbe3e;
+    color: #f8b053 !important;
+    font-weight: bold;
+    text-shadow: 1px 1px #6b6767 ;
 }
 /** end Menu **/
 /*** end Banner ***/
@@ -127,7 +135,7 @@ header{
     background-size:contain;
 }/**** end Category ****/
 
-/**** Article ****/
+/**** Articles ****/
 #article_title{
     color: #98b345;
     font-family: Impact, fantasy; 
@@ -135,4 +143,4 @@ header{
     margin-bottom: 5px;
     text-align: center;
 }
-/**** end Article ****/
+/**** end Articles ****/

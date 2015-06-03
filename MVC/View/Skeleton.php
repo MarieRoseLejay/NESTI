@@ -59,11 +59,11 @@
         <script type="text/javascript">
             var currentUrl = window.location.search; //recherche la partie get dans l'url
             $('.highlight').each(function(){ //pour chaque élément de classe highlight
-                var hrefPage = $(this).attr('href');
+                var hrefPage = encodeURI($(this).attr('href'));
                if(currentUrl.indexOf(hrefPage)!== -1){ //est-ce que la partie get de l'url est contenu dans hrefPage
-                    //alert($(this).attr('href'));
                     $(this).addClass('highlighted'); // on ajoute la classe highlighted
-               } 
+               }
+               
             });
         </script> 
     </body>
