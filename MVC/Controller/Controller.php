@@ -86,5 +86,68 @@
         
         require 'View/Content_Article_Ustensil.php';
     }
+    
+    function content_Admin($page){
+        $recettes = getTableRecette();
+        $tailletableau = count($recettes);
+
+        $images = getImages();
+        $tailletableauI = count($images);
+        //print_r($images);
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //initialisation des variables
+            $image = $_POST["image"];
+            $title = $_POST["title"];
+            $prixHT = $_POST["price"];
+            $resume = $_POST["summary"];
+            $contenu = $_POST["content"];
+            $tempsP = $_POST["makingtime"];
+            $tempsC = $_POST["cookingtime"];
+            $note = $_POST["rating"];
+            $difficulte = $_POST["difficulty"];
+            $budget = $_POST["budget"];
+            $id = $_POST["id"];
+            
+            //sauvegarde des données modifiées
+            saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id);
+            
+            require 'View/Content_Admin.php';
+        }
+        else
+        {
+            //initialisation des variables
+            $image = "";
+            $title = "";
+            $prixHT = "";
+            $resume = "";
+            $contenu = "";
+            $tempsP = "";
+            $tempsC = "";
+            $note = "";
+            $difficulte = "";
+            $budget = "";
+            $id = "";
+            
+            //Si une recette est sélectionnée
+            if(isset($_GET['recette'])){
+                //Pour la ligne de la table recette on appelle les colonnes désirées
+                $recette = getRecette($_GET['recette'])[0];
+                $image = $recette['Image_idImage'];
+                $title = $recette['Titre'];
+                $prixHT = $recette['PrixHT'];
+                $resume = $recette['Resume'];
+                $contenu = $recette['Contenu'];
+                $tempsP = $recette['Temps_Preparation'];
+                $tempsC = $recette['Temps_Cuisson'];
+                $note = $recette['Note'];
+                $difficulte = $recette['Difficulte'];
+                $budget = $recette['Budget'];
+                $id = $_GET['recette'];
+            }
+
+            require 'View/Content_Admin.php';
+        }
+    }
 ?>
 

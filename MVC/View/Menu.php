@@ -4,7 +4,7 @@
 <a class="col-lg-2 highlight" href="?page=2"> Recettes </a>
 <a class="col-lg-2 highlight" href="?page=3"> Ingrédients </a>
 <a class="col-lg-2 highlight" href="?page=4"> Ustensiles </a>    
-<a class="col-lg-2" id="menu_detail" href="?page=5"> Détail de la recette </a>
+<a class="col-lg-2" id="menu_detail" href="?page=5"> Admin </a>
 <!-- tag -->
 <div class="col-lg-2" id="menu_tag"> Tags associés </div>
 </div>

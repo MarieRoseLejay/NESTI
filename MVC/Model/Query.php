@@ -122,5 +122,35 @@
         
         return $res;
     }
+    
+    function getTableRecette(){
+        require 'Connection.php';
+         //récupération du contenu pour la table donnée
+        $query_TableRecette = 'SELECT * FROM recette';
+        $result_TableRecette = $pdo->query($query_TableRecette)->fetchAll();
+        
+        return $result_TableRecette;
+    }
+    
+    function saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id){
+        require 'Connection.php';
+         //récupération du contenu pour la table donnée
+        $query = 'UPDATE recette SET Titre ="'.$title.'", PrixHT = '.$prixHT.', '
+                . 'Resume="'.$resume.'", Contenu="'.$contenu.'", Image_idImage='.$image.','
+                . ' Temps_Preparation="'.$tempsP.'", Temps_Cuisson="'.$tempsC.'", Note='.$note.','
+                . ' Difficulte='.$difficulte.', Budget='.$budget.' WHERE idRecette='.$id.' ';
+        $query_Recette = $pdo->prepare($query);
+        
+        $query_Recette->execute();
+    }
+    
+    function getImages(){
+        require 'Connection.php';
+        //récupération de l'image correspondant à la recette
+        $query_Images = 'SELECT * FROM image';
+        $result_Images = $pdo->query($query_Images)->fetchAll();
+        
+        return ($result_Images);
+    }
 ?>
 
