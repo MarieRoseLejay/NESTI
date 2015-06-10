@@ -4,15 +4,12 @@
 <p class="col-lg-12 "> 
     Partie administrateur : 
     <div class="row">
-        <div class="col-lg-4 ">
-            <?php require 'View/Content_Admin_Recipe.php'; ?>
-        </div>
-        <div class="col-lg-4 ">
-            <?php require 'View/Content_Admin_Ingredient.php'; ?>
-        </div>
-        <div class="col-lg-4 ">
-            <?php require 'View/Content_Admin_Ustensil.php'; ?>
-        </div>
+        <?php require 'View/Content_Admin_Recipe.php'; ?>
+        <?php require 'View/Content_Admin_Ingredient.php'; ?>
+        <?php require 'View/Content_Admin_Ustensil.php'; ?>
+        <?php require 'View/Content_Admin_Tag.php'; ?>
+        <?php require 'View/Content_Admin_Image.php'; ?>
+        
     </div>
 </p>
 

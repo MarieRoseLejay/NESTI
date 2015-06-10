@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home</title>
+        <title>Alternative Cuisine</title>
         <meta charset="utf-8">
             <link href="../bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="View/css/Css.css" rel="stylesheet">
@@ -19,13 +19,13 @@
                     </div>
                     
                     <!-- research -->
-                    <div class="col-lg-5 col-md-5" id="research"> Recherche </div>
+                    <!--div class="col-lg-5 col-md-5" id="research"> Recherche </div-->
                     <!-- cart -->
-                    <div class="col-lg-1 col-md-1" id="cart"> Panier </div>
+                    <!--div class="col-lg-1 col-md-1" id="cart"> Panier </div-->
                     <!-- login -->
-                    <div class="col-lg-1 col-md-1" id="login"> Login </div>
+                    <!--div class="col-lg-1 col-md-1" id="login"> Login </div-->
                 </div>
-                <nav class="row" id="menu">
+                <nav class="row menu">
                     <?php require ('Menu.php'); ?>
                 </nav>
             </header>

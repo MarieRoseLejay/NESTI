@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 25 Mai 2015 à 23:28
+-- Généré le :  Dim 07 Juin 2015 à 17:08
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -98,6 +98,20 @@ CREATE TABLE IF NOT EXISTS `contient` (
   PRIMARY KEY (`Commande_idCommande`,`Recette_idRecette`),
   KEY `fk_Commande_has_Recette_Recette1_idx` (`Recette_idRecette`),
   KEY `fk_Commande_has_Recette_Commande1_idx` (`Commande_idCommande`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `enumere`
+--
+
+CREATE TABLE IF NOT EXISTS `enumere` (
+  `Recette_idRecette` int(10) unsigned NOT NULL,
+  `Ustensile_idUstensile` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`Recette_idRecette`,`Ustensile_idUstensile`),
+  KEY `fk_Recette_has_Ustensile_Ustensile1_idx` (`Ustensile_idUstensile`),
+  KEY `fk_Recette_has_Ustensile_Recette1_idx` (`Recette_idRecette`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -209,13 +223,27 @@ INSERT INTO `ingredient` (`idIngredient`, `NomIngredient`, `PrixUnitaireHT`, `Ma
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `liste`
+--
+
+CREATE TABLE IF NOT EXISTS `liste` (
+  `Recette_idRecette` int(10) unsigned NOT NULL,
+  `Ingredient_idIngredient` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`Recette_idRecette`,`Ingredient_idIngredient`),
+  KEY `fk_Recette_has_Ingredient_Ingredient1_idx` (`Ingredient_idIngredient`),
+  KEY `fk_Recette_has_Ingredient_Recette1_idx` (`Recette_idRecette`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `recette`
 --
 
 CREATE TABLE IF NOT EXISTS `recette` (
   `idRecette` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Titre` varchar(100) NOT NULL,
-  `Format` enum('Ecrit','Vidéo') NOT NULL,
+  `Format` enum('Ecrit','Vidéo') NOT NULL DEFAULT 'Ecrit',
   `PrixHT` decimal(10,2) unsigned NOT NULL,
   `Resume` varchar(100) NOT NULL,
   `Contenu` varchar(300) NOT NULL,
@@ -227,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `Budget` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idRecette`,`Image_idImage`),
   KEY `fk_Recette_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `recette`
@@ -235,11 +263,13 @@ CREATE TABLE IF NOT EXISTS `recette` (
 
 INSERT INTO `recette` (`idRecette`, `Titre`, `Format`, `PrixHT`, `Resume`, `Contenu`, `Image_idImage`, `Temps_Preparation`, `Temps_Cuisson`, `Note`, `Difficulte`, `Budget`) VALUES
 (1, 'Gâche Vendéenne', 'Ecrit', '1.00', 'Comment faire une bonne gâche vendéenne !', 'Faire bouillir le lait avec la demi gousse de vanille fendue en deux.\r\n\r\nDans une grande terrine, versez la farine, faire un puits, ajoutez le sel, cassez les 2 oeufs, ajoutez le sucre et le beurre ramolli détaillé en petits morceaux.\r\n\r\nDélayez la levure dans un verre de lait tiède, travaillez la p', 1, '30', '30', 5, 2, 1),
-(2, 'Clafoutis aux tomates cerises', 'Ecrit', '1.00', 'Comment faire un bon clafoutis aux tomates cerises !', 'Etaler la pâte brisée dans un moule à tarte. Disposer les tomates sur le fond. Ciseler le persil et en parsemer les tomates.\r\n\r\nBattre les œufs et la crème fraîche. Saler, poivrer. Verser la préparation sur la tarte et cuire au four (180°C) pendant une demi-heure.', 2, '', '', 0, 0, 0),
+(2, 'Clafoutis aux tomates cerises', 'Ecrit', '1.00', 'Comment faire un bon clafoutis aux tomates cerises !', 'Etaler la pâte brisée dans un moule à tarte. Disposer les tomates sur le fond. Ciseler le persil et en parsemer les tomates.Battre les œufs et la crème fraîche. Saler, poivrer. Verser la préparation sur la tarte et cuire au four (180°C) pendant une demi-heure.', 2, '20', '30', 0, 0, 0),
 (3, 'Chou rouge aux pommes', 'Ecrit', '1.00', 'Comment préparer un bon chou rouge aux pommes !  ', '1 Lavez et taillez le chou en lanières. Pelez et coupez les oignons en fines rondelles. Pelez les pommes, coupez-les en quartiers, épépinez-les et émincez-les en fines lamelles. Préchauffez le four th. 6 (180 °C).\r\n2 Déposez au fond de 4 moules à soufflé individuels un petit morceau de lard fumé. Ta', 3, '', '', 0, 0, 0),
 (4, 'Filets de cabillaud sauce citron', 'Ecrit', '1.00', 'Comment  cuisiner de bons filets de cabillaud à la sauce citron !', '1 Brossez les citrons sous l’eau chaude. Prélevez le zeste et pressez le jus de l’un, coupez l’autre en rondelles.\r\n2 Dans une sauteuse, faites fondre le beurre et faites-y dorer les filets de cabillaud 5 minutes sur chaque face. Saupoudrez de gingembre, salez et poivrez.\r\n3 Ajoutez la sauce soja, l', 4, '', '', 0, 0, 0),
 (5, 'Tartelettes au citron vert ', 'Ecrit', '1.00', 'Comment cuisiner de bonnes Tartelettes au citron vert !', '1 Préchauffez le four th. 6 (180 °C). Mixez les spéculoos. Mélangez-les avec le beurre. Garnissez-en 4 moules à tartelettes. Aplatissez la pâte avec le fond d’un verre en la faisant remonter sur le bord des moules.\r\n2 Fouettez les jaunes d’œufs avec le lait concentré, le zeste râpé d’1 citron et le ', 5, '', '', 0, 0, 0),
-(6, 'Oeuf cocotte', 'Ecrit', '1.00', 'Comment  cuisiner un bon oeuf cocotte !', '1 Préchauffez le four à 200 °C.\r\n2 Beurrez 4 ramequins allant au four et ajoutez-y la crème.\r\n3 Cassez l’œuf par-dessus, salez puis poivrez.\r\n4 Mettez les ramequins dans un plat allant au four rempli d''eau bouillante.\r\n5 Enfournez 10 à 15 min environ, selon la cuisson souhaitée.\r\n6 Ciselez la ciboul', 6, '', '', 0, 0, 0);
+(6, 'Oeuf cocotte', 'Ecrit', '1.00', 'Comment  cuisiner un bon oeuf cocotte !', '1 Préchauffez le four à 200 °C.\r\n2 Beurrez 4 ramequins allant au four et ajoutez-y la crème.\r\n3 Cassez l’œuf par-dessus, salez puis poivrez.\r\n4 Mettez les ramequins dans un plat allant au four rempli d''eau bouillante.\r\n5 Enfournez 10 à 15 min environ, selon la cuisson souhaitée.\r\n6 Ciselez la ciboul', 6, '', '', 0, 0, 0),
+(9, 'Lait d''amande', 'Ecrit', '1.00', 'Comment fabriquer du bon lait d''amande !', 'Placer 100g d''amande décortiquées dans un mixeur. Recouvrir d''eau, mixer puis filtrer. C''est prêt !', 17, '10', '0', 5, 1, 1),
+(11, 'Oeufs sur le plat', 'Ecrit', '1.00', 'De bons oeufs sur le plat !', 'Oeufs sur le plat', 13, '5', '5', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -379,6 +409,13 @@ ALTER TABLE `contient`
   ADD CONSTRAINT `fk_Commande_has_Recette_Recette1` FOREIGN KEY (`Recette_idRecette`) REFERENCES `recette` (`idRecette`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Contraintes pour la table `enumere`
+--
+ALTER TABLE `enumere`
+  ADD CONSTRAINT `fk_Recette_has_Ustensile_Recette1` FOREIGN KEY (`Recette_idRecette`) REFERENCES `recette` (`idRecette`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Recette_has_Ustensile_Ustensile1` FOREIGN KEY (`Ustensile_idUstensile`) REFERENCES `ustensile` (`idUstensile`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `indexe`
 --
 ALTER TABLE `indexe`
@@ -391,6 +428,13 @@ ALTER TABLE `indexe`
 ALTER TABLE `ingredient`
   ADD CONSTRAINT `fk_Article_Image1` FOREIGN KEY (`Image_idImage`) REFERENCES `image` (`idImage`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Ingredient_Image1` FOREIGN KEY (`Image_idImage`) REFERENCES `image` (`idImage`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `liste`
+--
+ALTER TABLE `liste`
+  ADD CONSTRAINT `fk_Recette_has_Ingredient_Recette1` FOREIGN KEY (`Recette_idRecette`) REFERENCES `recette` (`idRecette`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Recette_has_Ingredient_Ingredient1` FOREIGN KEY (`Ingredient_idIngredient`) REFERENCES `ingredient` (`idIngredient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `recette`

@@ -9,7 +9,7 @@
         //création des images
         shuffle($result_Idimage);  //mélange des index du tableau
         $res = array();
-        for($j = 0; $j <5; $j++){
+        for($j = 0; $j <7; $j++){
             $res[$j] = $result_Idimage[$j]['NomFichier'];
         }
         return ($res);
@@ -134,14 +134,14 @@
     
     function saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id){
         require 'Connection.php';
-         //récupération du contenu pour la table donnée
+         //récupération du contenu pour la table recette
         $query = 'UPDATE recette SET Titre ="'.$title.'", PrixHT = '.$prixHT.', '
                 . 'Resume="'.$resume.'", Contenu="'.$contenu.'", Image_idImage='.$image.','
                 . ' Temps_Preparation="'.$tempsP.'", Temps_Cuisson="'.$tempsC.'", Note='.$note.','
                 . ' Difficulte='.$difficulte.', Budget='.$budget.' WHERE idRecette='.$id.' ';
-        $query_Recette = $pdo->prepare($query);
-        
-        $query_Recette->execute();
+        $query_updateRecette = $pdo->prepare($query);
+ 
+        $query_updateRecette->execute();
     }
     
     function getImages(){
@@ -151,6 +151,27 @@
         $result_Images = $pdo->query($query_Images)->fetchAll();
         
         return ($result_Images);
+    }
+    
+    function createRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget){
+        require 'Connection.php';
+         //insertion d'une nouvelle ligne dans la table recette
+        $query = 'INSERT INTO recette (Titre, PrixHT,Resume, Contenu, Image_idImage,'
+                . ' Temps_Preparation, Temps_Cuisson, Note, Difficulte, Budget)'
+                . ' VALUES ("'.$title.'",'.$prixHT.',"'.$resume.'","'.$contenu.'",'.$image.','
+                . '"'.$tempsP.'","'.$tempsC.'",'.$note.','.$difficulte.','.$budget.')';
+        $query_createRecette = $pdo->prepare($query);
+
+        $query_createRecette->execute();
+    }
+    
+    function deleteRecipe($id){
+        require 'Connection.php';
+        
+        $query = 'DELETE FROM recette WHERE idRecette='.$id.' ';
+        $query_deleteRecette = $pdo->prepare($query);
+
+        $query_deleteRecette->execute();
     }
 ?>
 

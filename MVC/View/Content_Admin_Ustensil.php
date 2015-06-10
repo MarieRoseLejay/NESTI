@@ -1,4 +1,4 @@
-<form name="ustensil" action="Content_Admin.php" method="POST">
+<form name="ustensil" action="Content_Admin_Ustensil.php" method="POST">
         <button class="btn" type="button" data-toggle="collapse" 
                 data-target="#ustensil" aria-expanded="false" aria-controls="ustensil">
         Action sur un article de catégorie Ustensile </button>

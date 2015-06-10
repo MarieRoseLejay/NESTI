@@ -38,13 +38,19 @@ header{
 }
 /** Menu **/
 
-#menu [class*="col-"]{
+.menu [class*="col-"]{
     padding: 3px;
 }
-#menu, #menu_home, #menu_detail{
+.menu, #menu_home, #menu_detail{
     background: #98b345;
     color: white;
     text-align: center;
+}
+a:hover{
+    color: white;
+}
+#menu_detail{
+    color: #98b345;
 }
 
 .highlight{
@@ -75,6 +81,7 @@ header{
 }
 #content_article{
     background: rgba(251,247,233,1);
+    border-radius: 25px;
     border: solid 1px #f8b053;
     min-height: 700px;
     padding: 10px;
@@ -88,12 +95,28 @@ header{
 }/**** end Skeleton ****/
 
 /**** Home ****/
-#home_img1, #home_img2, #home_img3{
-    height: 150px;
-    margin: 29px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    width: 150px;
+#home_container{
+    padding: 0px;
+}
+.home_text{
+    font-family: Georgia;
+    font-style: italic;
+}
+.home_img_recipe{
+    //border-radius: 25px;
+    height: 250px;
+    margin: 5px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    width: 250px;
+}
+.home_img{
+    border-radius: 25px;
+    height: 100px;
+    margin: 25px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    width: 100px;
 }
 .picture{
     //border: solid 1px black;

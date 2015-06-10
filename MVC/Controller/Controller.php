@@ -109,9 +109,20 @@
             $budget = $_POST["budget"];
             $id = $_POST["id"];
             
-            //sauvegarde des données modifiées
-            saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id);
-            
+            if ($_POST['sauvegarder']){
+                if($id == ""){
+                    //ajout de données
+                    createRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget);
+                }
+                else{
+                    //sauvegarde des données modifiées
+                    saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id);
+                }
+            }
+            elseif ($_POST['supprimer']) {
+                //suppression de la recetete
+                deleteRecipe($id);
+            } 
             require 'View/Content_Admin.php';
         }
         else

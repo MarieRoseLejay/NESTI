@@ -75,7 +75,7 @@
             <input type="text" name="difficulty" value="<?php echo $difficulte ?>">
         </p>
         <p class="col-lg-12 "> Budget :  
-            <input type="text" name="budget" value="<?php echo $budget ?>"><input type="hidden" name="id" value="<?php echo $id ?>">
+            <input type="text" name="budget" value="<?php echo $budget ?>">
         </p>
         <input type="hidden" name="id" value="<?php echo $id ?>">
         <input type="submit" name="sauvegarder" value="sauvegarder">
