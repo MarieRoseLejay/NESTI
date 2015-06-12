@@ -34,14 +34,14 @@
             </select>
         </p>
         <p class="col-lg-12 "> Image correspondante : 
-            <select name="imageI">
+            <select name="imageU">
                 <?php //Si l'id est le même que celui dans l'url on ajoute l'attribut selected à <option> 
                     for($i = -1; $i < $tailletableauImg; $i++){
                         if($i == -1){
                             echo '<option value=""> </option>';
                         }
                         else{
-                            if($images[$i]['idImage'] == $imageI){
+                            if($images[$i]['idImage'] == $imageU){
                                 echo '<option value="'.$images[$i]['idImage'].'" selected>'.$images[$i]['NomFichier'].'</option>';
                             }
                             else {
@@ -52,19 +52,28 @@
                 ?>
             </select>
         </p>
-        <p class="col-lg-12 "> Image correspondante :  
-            <input type="text" name="image">
+        <p class="col-lg-12 "> Nom de l'ustensile : 
+            <input type="text" name="nameU" value="<?php echo $nameU ?>">
         </p>
-        <p class="col-lg-12 "> Nom de l'ingrédient : 
-            <input type="text" name="name">
         <p class="col-lg-12 "> Prix unitaire HT : 
-            <input type="text" name="unitprice">
+            <input type="text" name="unitpriceU" value="<?php echo $unitpriceU ?>">
         </p>
         <p class="col-lg-12 "> Marque :  
-            <input type="text" name="brand">
+            <input type="text" name="brandU" value="<?php echo $brandU ?>">
         </p>
+        <input type="hidden" name="idUstensile" value="<?php echo $idUstensile ?>">
         <input type="submit" name="sauvegarder" value="sauvegarder">
         <input type="submit" name="supprimer" value="supprimer l'ustensile">        
-    </div>
-
+    </div><!-- ouvert avec button ne pas supprimer !-->
 </form>
+<script type="text/javascript" language="javascript">
+    function afficherUstensile(idUstensile){
+        //on recharge la page en rafraichissant l'url à laquelle on ajoute l'id de l'ustensile sélectionnée 
+        if(idUstensile === ''){
+            document.location = "?page=5";
+        }
+        else{
+            document.location = "?page=5&ustensile=" + idUstensile;
+        }
+    }
+</script>

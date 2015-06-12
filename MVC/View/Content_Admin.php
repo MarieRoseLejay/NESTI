@@ -6,7 +6,7 @@
     <div class="row">
         <?php require 'View/Content_Admin_Recipe.php'; ?>
         <?php require 'View/Content_Admin_Ingredient.php'; ?>
-        <!--?php require 'View/Content_Admin_Ustensil.php'; ?-->
+        <?php require 'View/Content_Admin_Ustensil.php'; ?>
         <!--?php require 'View/Content_Admin_Tag.php'; ?-->
         <!--?php require 'View/Content_Admin_Image.php'; ?-->
         

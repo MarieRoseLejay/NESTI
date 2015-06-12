@@ -97,6 +97,9 @@
         $ingredients = getTableIngredient();
         $tailletableauI = count($ingredients);
         
+        $ustensiles = getTableUstensile();
+        $tailletableauU = count($ustensiles);
+        
         //initialisation des variables de recettes
         $image = "";
         $title = "";
@@ -116,6 +119,13 @@
         $unitpriceI = "";
         $brandI = "";
         $idIngredient = 0;
+        
+        //initialisation des variables d'ustensile
+        $imageU = "";
+        $nameU = "";
+        $unitpriceU = "";
+        $brandU = "";
+        $idUstensile = 0;
         
         echo "content_Admin\n";
         echo $_SERVER["REQUEST_METHOD"];
@@ -163,6 +173,7 @@
                 $unitpriceI = $_POST["unitprice"];
                 $brandI = $_POST["brand"];
                 $idIngredient = $_POST["idIngredient"];
+                
                 if ($_POST['sauvegarder']){
                     echo "sauvegarder " . $idIngredient;
                     if($idIngredient == 0){
@@ -182,16 +193,24 @@
             //Gestion des ustensiles
             if(isset($_POST['idUstensile'])){
                 //initialisation des variables
+                $imageU = $_POST["imageU"];
+                $nameU = $_POST["nameU"];
+                $unitpriceU = $_POST["unitpriceU"];
+                $brandU = $_POST["brandU"];
+                $idUstensile = $_POST["idUstensile"];
+                
                 if ($_POST['sauvegarder']){
-                    if($idUstensile == ""){
+                    if($idUstensile == 0){
                         //ajout de données}
+                        createUstensile($nameU,$unitpriceU,$brandU,$imageU);
                     }else{
                         //sauvegarde des données modifiées
+                        saveUstensile($idUstensile,$nameU,$unitpriceU,$brandU,$imageU);
                     }
                 }
                 elseif ($_POST['supprimer']) {
                     //suppression de l'ustensile
-                    
+                    deleteUstensile($idUstensile);
                 }
             }
             //Gestion des tags
@@ -244,7 +263,6 @@
                 $idRecette = $_GET['recette'];
             }
         //Gestion des ingrédients
-           
             //Si une recette est sélectionnée
             if(isset($_GET['ingredient'])){
                 //Pour la ligne de la table ingredient on appelle les colonnes désirées
@@ -256,10 +274,15 @@
                 $idIngredient = $_GET['ingredient'];
             }
         //Gestion des ustensiles
-            //initialisation des variables
             //Si un ustensile est sélectionné
             if(isset($_GET['ustensile'])){
                 //Pour la ligne de la table ustensile on appelle les colonnes désirées
+                $ustensile = getUstensile($_GET['ustensile'])[0];
+                $imageU = $ustensile['Image_idImage'];
+                $nameU = $ustensile['NomUstensile'];
+                $unitpriceU = $ustensile['PrixUnitaireHT'];
+                $brandU = $ustensile['Marque'];
+                $idUstensile = $_GET['ustensile'];
             }
         //Gestion des tags
             //initialisation des variables

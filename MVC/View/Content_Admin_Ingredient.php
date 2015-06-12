@@ -53,7 +53,7 @@
             </select>
         </p>
         <p class="col-lg-12 "> Nom de l'ingrédient : 
-            <input type="text" name="name"  value="<?php echo $nameI ?>">
+            <input type="text" name="name" value="<?php echo $nameI ?>">
         </p>
         <p class="col-lg-12 "> Prix unitaire HT : 
             <input type="text" name="unitprice" value="<?php echo $unitpriceI ?>">

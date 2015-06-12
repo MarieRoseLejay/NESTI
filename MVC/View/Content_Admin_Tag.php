@@ -1,4 +1,4 @@
-<form name="tag" action="Content_Admin_Tag.php" method="POST">
+<form name="tag" action="" method="POST">
         <button class="btn" type="button" data-toggle="collapse" 
                 data-target="#tag" aria-expanded="false" aria-controls="tag">
         Action sur les tags </button>

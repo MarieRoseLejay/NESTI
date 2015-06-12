@@ -179,33 +179,64 @@
         $query = 'UPDATE ingredient SET idIngredient ='.$idIngredient.', NomIngredient = "'.$NomIngredient.'"'
                 . ', PrixUnitaireHT='.$PrixUnitaireHT.', Marque="'.$Marque.'", Image_idImage='.$image
                 .' WHERE idIngredient='.$idIngredient.' ';
-        $query_updateRecette = $pdo->prepare($query);
+        $query_updateIngredient = $pdo->prepare($query);
  
-        $query_updateRecette->execute();
+        $query_updateIngredient->execute();
     }
     function createIngredient($NomIngredient,$PrixUnitaireHT,$Marque,$image){
         require 'Connection.php';
-         //insertion d'une nouvelle ligne dans la table recette
+         //insertion d'une nouvelle ligne dans la table ingredient
         $query = 'INSERT INTO ingredient (NomIngredient,PrixUnitaireHT,Marque,Image_idImage)'
                 . ' VALUES ("'.$NomIngredient.'",'.$PrixUnitaireHT.',"'.$Marque.'",'.$image.')';
         echo $query;
-        $query_createRecette = $pdo->prepare($query);
+        $query_createIngredient = $pdo->prepare($query);
 
-        $query_createRecette->execute();
+        $query_createIngredient->execute();
     }
     function deleteIngredient($idIngredient){
         require 'Connection.php';
         
         $query = 'DELETE FROM ingredient WHERE idIngredient='.$idIngredient.' ';
-        $query_deleteRecette = $pdo->prepare($query);
+        $query_deleteIngredient = $pdo->prepare($query);
 
-        $query_deleteRecette->execute();
+        $query_deleteIngredient->execute();
     }
     
-    function getTableUstensile(){}
-    function saveUstensile(){}
-    function createUstensile(){}
-    function deleteUstensile(){}
+    function getTableUstensile(){
+        require 'Connection.php';
+         //récupération du contenu pour la table donnée
+        $query_TableUstensile = 'SELECT * FROM ustensile';
+        $result_TableUstensile = $pdo->query($query_TableUstensile)->fetchAll();
+        
+        return $result_TableUstensile;
+    }
+    function saveUstensile($idUstensile,$NomUstensile,$PrixUnitaireHT,$Marque,$image){
+        require 'Connection.php';
+         //récupération du contenu pour la table recette
+        $query = 'UPDATE ustensile SET idUstensile ='.$idUstensile.', NomUstensile = "'.$NomUstensile.'"'
+                . ', PrixUnitaireHT='.$PrixUnitaireHT.', Marque="'.$Marque.'", Image_idImage='.$image
+                .' WHERE idUstensile='.$idUstensile.' ';
+        $query_updateUstensile = $pdo->prepare($query);
+ 
+        $query_updateUstensile->execute();
+    }
+    function createUstensile($NomUstensile,$PrixUnitaireHT,$Marque,$image){
+        require 'Connection.php';
+         //insertion d'une nouvelle ligne dans la table ustensile
+        $query = 'INSERT INTO ustensile (NomUstensile,PrixUnitaireHT,Marque,Image_idImage)'
+                . ' VALUES ("'.$NomUstensile.'",'.$PrixUnitaireHT.',"'.$Marque.'",'.$image.')';
+        echo $query;
+        $query_createUstensile = $pdo->prepare($query);
+
+        $query_createUstensile->execute();
+    }
+    function deleteUstensile($idUstensile){
+        require 'Connection.php';
+        
+        $query = 'DELETE FROM ustensile WHERE idUstensile='.$idUstensile.' ';
+        $query_deleteUstensile = $pdo->prepare($query);
+
+        $query_deleteUstensile->execute();}
     
     function getTableTag(){}
     function saveTag(){}
