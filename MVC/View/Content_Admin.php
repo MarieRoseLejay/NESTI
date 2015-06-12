@@ -9,8 +9,9 @@
         <?php require 'View/Content_Admin_Ustensil.php'; ?>
         <?php require 'View/Content_Admin_Tag.php'; ?>
         <?php require 'View/Content_Admin_Image.php'; ?>
-        
     </div>
+    <a href="?page=5&UT" > test unitaires </a>
+    <div><?php echo $message ?></div>
 </p>
 
 

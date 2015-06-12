@@ -1,11 +1,21 @@
 <?php 
     function getIdImageShuffle($table){
         require 'Connection.php';
+        $result_Idimage = null;
+        
+        if($table != 'recette'){
         //récupération de idImage et NomFichier pour toutes les lignes de la table sélectionnée
         $query_Idimage = 'SELECT idImage, NomFichier FROM image, '.$table
                 .' WHERE image.idImage='.$table.'.Image_idImage';
         $result_Idimage = $pdo->query($query_Idimage)->fetchAll(); //donne un tableau
-       
+        }
+        else{
+            $stmt = $pdo->prepare("CALL p_getIdImageShuffleRecette()");
+            $stmt->execute();
+            $result_Idimage = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //p_getIdImageShuffleRecette;
+        }
+        
         //création des images
         shuffle($result_Idimage);  //mélange des index du tableau
         $res = array();
@@ -327,6 +337,18 @@
 
         $query_deleteImage->execute();
     }
+
+    //contrainte : ALTER TABLE `recette` ADD UNIQUE( `Titre`);
+    //trigger : DELIMITER #
+//CREATE TRIGGER IngredientListe 
+//BEFORE DELETE 
+//ON ingredient
+//FOR EACH ROW
+//BEGIN
+//	DELETE FROM liste WHERE Ingredient_idIngredient = OLD.idIngredient;
+//END#
     
+//Procédure stockée : CREATE PROCEDURE `p_getIdImageShuffleRecette`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT idImage, NomFichier FROM image,recette WHERE image.idImage=recette.Image_idImage 
+        
 ?>
 

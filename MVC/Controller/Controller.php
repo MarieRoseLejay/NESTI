@@ -327,9 +327,30 @@
                 $legend = $image['Legende'];
                 $idImage = $_GET['image'];
             }
+            
+            $message = "";
+            if(isset($_GET['UT'])){
+                $valeur = "légumes";
+                createTag($valeur);
+                $result = getTableTag();
+                $nbTag = count($result);
+                $found = false;
+                for($i = 0; $i < $nbTag; $i++){
+                    if($result[$i]["Valeur"] == $valeur)
+                    {
+                        $found = true;
+                        break;
+                    }
+                }
+                if($found)
+                    $message = "TU OK";
+                else
+                    $message = "TU NOK";
+            }
         }
         
         require 'View/Content_Admin.php';
+        
     }
 ?>
 
