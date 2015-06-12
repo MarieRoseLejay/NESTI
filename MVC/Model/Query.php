@@ -236,12 +236,52 @@
         $query = 'DELETE FROM ustensile WHERE idUstensile='.$idUstensile.' ';
         $query_deleteUstensile = $pdo->prepare($query);
 
-        $query_deleteUstensile->execute();}
+        $query_deleteUstensile->execute();
+    }
     
-    function getTableTag(){}
-    function saveTag(){}
-    function createTag(){}
-    function deleteTag(){}
+    function getTag($idTag){
+        require 'Connection.php';
+         //récupération du contenu de la colonne pour la table donnée
+        $query_tag = 'SELECT * FROM tag WHERE idTag = '.$idTag.'';
+        $result_tag = $pdo->query($query_tag)->fetchAll();
+        
+        return $result_tag;
+    }
+    function getTableTag(){
+        require 'Connection.php';
+         //récupération du contenu pour la table donnée
+        $query_TableTag = 'SELECT * FROM tag';
+        $result_TableTag = $pdo->query($query_TableTag)->fetchAll();
+        
+        return $result_TableTag;
+    }
+    function saveTag($idTag,$valeur){
+        require 'Connection.php';
+         //récupération du contenu pour la table recette
+        $query = 'UPDATE tag SET Valeur = "'.$valeur.'"'
+                .' WHERE idTag='.$idTag;
+        $query_updateTag = $pdo->prepare($query);
+ 
+        $query_updateTag->execute();
+    }
+    function createTag($valeur){
+        require 'Connection.php';
+         //insertion d'une nouvelle ligne dans la table ustensile
+        $query = 'INSERT INTO tag (Valeur)'
+                . ' VALUES ("'.$valeur.'")';
+        echo $query;
+        $query_createTag = $pdo->prepare($query);
+
+        $query_createTag->execute();
+    }
+    function deleteTag($idTag){
+        require 'Connection.php';
+        
+        $query = 'DELETE FROM tag WHERE idTag='.$idTag.' ';
+        $query_deleteTag = $pdo->prepare($query);
+
+        $query_deleteTag->execute();
+    }
     
     function getImages(){
         require 'Connection.php';

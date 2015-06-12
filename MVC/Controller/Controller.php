@@ -99,7 +99,10 @@
         
         $ustensiles = getTableUstensile();
         $tailletableauU = count($ustensiles);
-        
+
+        $tags = getTableTag();
+        $tailletableauT = count($tags);
+
         //initialisation des variables de recettes
         $image = "";
         $title = "";
@@ -127,11 +130,15 @@
         $brandU = "";
         $idUstensile = 0;
         
-        echo "content_Admin\n";
-        echo $_SERVER["REQUEST_METHOD"];
-        echo "\n";
+        //initialisation des variables tag
+        $valeur = "";
+        $idTag = 0;
+        
+        //echo "content_Admin\n";
+        //echo $_SERVER["REQUEST_METHOD"];
+        //echo "\n";
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "POST";
+            //echo "POST";
             //Gestion des recettes
             if(isset($_POST['idRecette'])){
                 //initialisation des variables
@@ -165,7 +172,7 @@
             
             //Gestion des ingrédients
             if(isset($_POST['idIngredient'])){
-                echo "Ingredient";
+                //echo "Ingredient";
                  
                 //initialisation des variables
                 $imageI = $_POST["imageI"];
@@ -175,10 +182,10 @@
                 $idIngredient = $_POST["idIngredient"];
                 
                 if ($_POST['sauvegarder']){
-                    echo "sauvegarder " . $idIngredient;
+                    //echo "sauvegarder " . $idIngredient;
                     if($idIngredient == 0){
                         //ajout de données}
-                        echo "createIngredient";
+                        //echo "createIngredient";
                         createIngredient($nameI,$unitpriceI,$brandI,$imageI);
                     }else{
                         //sauvegarde des données modifiées
@@ -216,22 +223,28 @@
             //Gestion des tags
             if(isset($_POST['idTag'])){
                 //initialisation des variables
+                $valeur = $_POST["valeur"];
+                $idTag = $_POST["idTag"];
+                
                 if ($_POST['sauvegarder']){
-                    if($idTag == ""){
+                    if($idTag == 0){
                         //ajout de données}
+                        createTag($valeur);
                     }else{
                         //sauvegarde des données modifiées
+                        saveTag($idTag,$valeur);
                     }
                 }
                 elseif ($_POST['supprimer']) {
                     //suppression des tags
+                    deleteTag($idTag);
                 }
             }
             //Gestion des images
             if(isset($_POST['idImages'])){
                 //initialisation des variables
                 if ($_POST['sauvegarder']){
-                    if($idImages == ""){
+                    if($idImages == 0){
                         //ajout de données}
                     }else{
                         //sauvegarde des données modifiées
@@ -285,13 +298,14 @@
                 $idUstensile = $_GET['ustensile'];
             }
         //Gestion des tags
-            //initialisation des variables
             //Si un tag est sélectionné
             if(isset($_GET['tag'])){
                 //Pour la ligne de la table tag on appelle les colonnes désirées
+                $tag = getTag($_GET['tag'])[0];
+                $valeur = $tag['Valeur'];
+                $idTag = $_GET['tag'];
             }
         //Gestion des images
-            //initialisation des variables
             //Si une image est sélectionnée
             if(isset($_GET['image'])){
                 //Pour la ligne de la table image on appelle les colonnes désirées
