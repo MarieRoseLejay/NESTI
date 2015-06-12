@@ -88,58 +88,145 @@
     }
     
     function content_Admin($page){
-        $recettes = getTableRecette();
-        $tailletableau = count($recettes);
-
         $images = getImages();
-        $tailletableauI = count($images);
-        //print_r($images);
+        $tailletableauImg = count($images);
         
-        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            //initialisation des variables
-            $image = $_POST["image"];
-            $title = $_POST["title"];
-            $prixHT = $_POST["price"];
-            $resume = $_POST["summary"];
-            $contenu = $_POST["content"];
-            $tempsP = $_POST["makingtime"];
-            $tempsC = $_POST["cookingtime"];
-            $note = $_POST["rating"];
-            $difficulte = $_POST["difficulty"];
-            $budget = $_POST["budget"];
-            $id = $_POST["id"];
-            
-            if ($_POST['sauvegarder']){
-                if($id == ""){
-                    //ajout de données
-                    createRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget);
+        $recettes = getTableRecette();
+        $tailletableauR = count($recettes);
+        
+        $ingredients = getTableIngredient();
+        $tailletableauI = count($ingredients);
+        
+        //initialisation des variables de recettes
+        $image = "";
+        $title = "";
+        $prixHT = "";
+        $resume = "";
+        $contenu = "";
+        $tempsP = "";
+        $tempsC = "";
+        $note = "";
+        $difficulte = "";
+        $budget = "";
+        $idRecette = 0;
+        
+        //initialisation des variables d'ingrédient
+        $imageI = "";
+        $nameI = "";
+        $unitpriceI = "";
+        $brandI = "";
+        $idIngredient = 0;
+        
+        echo "content_Admin\n";
+        echo $_SERVER["REQUEST_METHOD"];
+        echo "\n";
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            echo "POST";
+            //Gestion des recettes
+            if(isset($_POST['idRecette'])){
+                //initialisation des variables
+                $image = $_POST["image"];
+                $title = $_POST["title"];
+                $prixHT = $_POST["price"];
+                $resume = $_POST["summary"];
+                $contenu = $_POST["content"];
+                $tempsP = $_POST["makingtime"];
+                $tempsC = $_POST["cookingtime"];
+                $note = $_POST["rating"];
+                $difficulte = $_POST["difficulty"];
+                $budget = $_POST["budget"];
+                $idRecette = $_POST["idRecette"];
+
+                if ($_POST['sauvegarder']){
+                    if($idRecette == 0){
+                        //ajout de données
+                        createRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget);
+                    }
+                    else{
+                        //sauvegarde des données modifiées
+                        saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $idRecette);
+                    }
                 }
-                else{
-                    //sauvegarde des données modifiées
-                    saveRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget, $id);
+                elseif ($_POST['supprimer']) {
+                    //suppression de la recette
+                    deleteRecipe($idRecette);
                 }
             }
-            elseif ($_POST['supprimer']) {
-                //suppression de la recetete
-                deleteRecipe($id);
-            } 
-            require 'View/Content_Admin.php';
+            
+            //Gestion des ingrédients
+            if(isset($_POST['idIngredient'])){
+                echo "Ingredient";
+                 
+                //initialisation des variables
+                $imageI = $_POST["imageI"];
+                $nameI = $_POST["name"];
+                $unitpriceI = $_POST["unitprice"];
+                $brandI = $_POST["brand"];
+                $idIngredient = $_POST["idIngredient"];
+                if ($_POST['sauvegarder']){
+                    echo "sauvegarder " . $idIngredient;
+                    if($idIngredient == 0){
+                        //ajout de données}
+                        echo "createIngredient";
+                        createIngredient($nameI,$unitpriceI,$brandI,$imageI);
+                    }else{
+                        //sauvegarde des données modifiées
+                        saveIngredient($idIngredient,$nameI,$unitpriceI,$brandI,$imageI);
+                    }
+                }
+                elseif ($_POST['supprimer']) {
+                    //suppression de l'ingredient
+                    deleteIngredient($idIngredient);
+                }
+            }
+            //Gestion des ustensiles
+            if(isset($_POST['idUstensile'])){
+                //initialisation des variables
+                if ($_POST['sauvegarder']){
+                    if($idUstensile == ""){
+                        //ajout de données}
+                    }else{
+                        //sauvegarde des données modifiées
+                    }
+                }
+                elseif ($_POST['supprimer']) {
+                    //suppression de l'ustensile
+                    
+                }
+            }
+            //Gestion des tags
+            if(isset($_POST['idTag'])){
+                //initialisation des variables
+                if ($_POST['sauvegarder']){
+                    if($idTag == ""){
+                        //ajout de données}
+                    }else{
+                        //sauvegarde des données modifiées
+                    }
+                }
+                elseif ($_POST['supprimer']) {
+                    //suppression des tags
+                }
+            }
+            //Gestion des images
+            if(isset($_POST['idImages'])){
+                //initialisation des variables
+                if ($_POST['sauvegarder']){
+                    if($idImages == ""){
+                        //ajout de données}
+                    }else{
+                        //sauvegarde des données modifiées
+                    }
+                }
+                elseif ($_POST['supprimer']) {
+                    //suppression des images
+                }
+            }
         }
         else
         {
-            //initialisation des variables
-            $image = "";
-            $title = "";
-            $prixHT = "";
-            $resume = "";
-            $contenu = "";
-            $tempsP = "";
-            $tempsC = "";
-            $note = "";
-            $difficulte = "";
-            $budget = "";
-            $id = "";
-            
+        //Gestion des recettes
+            echo "GET";
             //Si une recette est sélectionnée
             if(isset($_GET['recette'])){
                 //Pour la ligne de la table recette on appelle les colonnes désirées
@@ -154,11 +241,41 @@
                 $note = $recette['Note'];
                 $difficulte = $recette['Difficulte'];
                 $budget = $recette['Budget'];
-                $id = $_GET['recette'];
+                $idRecette = $_GET['recette'];
             }
-
-            require 'View/Content_Admin.php';
+        //Gestion des ingrédients
+           
+            //Si une recette est sélectionnée
+            if(isset($_GET['ingredient'])){
+                //Pour la ligne de la table ingredient on appelle les colonnes désirées
+                $ingredient = getIngredient($_GET['ingredient'])[0];
+                $imageI = $ingredient['Image_idImage'];
+                $nameI = $ingredient['NomIngredient'];
+                $unitpriceI = $ingredient['PrixUnitaireHT'];
+                $brandI = $ingredient['Marque'];
+                $idIngredient = $_GET['ingredient'];
+            }
+        //Gestion des ustensiles
+            //initialisation des variables
+            //Si un ustensile est sélectionné
+            if(isset($_GET['ustensile'])){
+                //Pour la ligne de la table ustensile on appelle les colonnes désirées
+            }
+        //Gestion des tags
+            //initialisation des variables
+            //Si un tag est sélectionné
+            if(isset($_GET['tag'])){
+                //Pour la ligne de la table tag on appelle les colonnes désirées
+            }
+        //Gestion des images
+            //initialisation des variables
+            //Si une image est sélectionnée
+            if(isset($_GET['image'])){
+                //Pour la ligne de la table image on appelle les colonnes désirées
+            }
         }
+        
+        require 'View/Content_Admin.php';
     }
 ?>
 

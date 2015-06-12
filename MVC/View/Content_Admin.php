@@ -1,17 +1,18 @@
 <?php // déclenchement de la mise en tampon du flux HTML de sortie
     ob_start();  ?>
 
-<p class="col-lg-12 "> 
+<p class="col-lg-12"> 
     Partie administrateur : 
     <div class="row">
         <?php require 'View/Content_Admin_Recipe.php'; ?>
         <?php require 'View/Content_Admin_Ingredient.php'; ?>
-        <?php require 'View/Content_Admin_Ustensil.php'; ?>
-        <?php require 'View/Content_Admin_Tag.php'; ?>
-        <?php require 'View/Content_Admin_Image.php'; ?>
+        <!--?php require 'View/Content_Admin_Ustensil.php'; ?-->
+        <!--?php require 'View/Content_Admin_Tag.php'; ?-->
+        <!--?php require 'View/Content_Admin_Image.php'; ?-->
         
     </div>
 </p>
+
 
 <?php
 /*je veux : 

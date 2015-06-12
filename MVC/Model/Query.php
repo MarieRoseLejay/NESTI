@@ -144,15 +144,6 @@
         $query_updateRecette->execute();
     }
     
-    function getImages(){
-        require 'Connection.php';
-        //récupération de l'image correspondant à la recette
-        $query_Images = 'SELECT * FROM image';
-        $result_Images = $pdo->query($query_Images)->fetchAll();
-        
-        return ($result_Images);
-    }
-    
     function createRecipe($title, $prixHT, $resume, $contenu, $image, $tempsP, $tempsC, $note, $difficulte, $budget){
         require 'Connection.php';
          //insertion d'une nouvelle ligne dans la table recette
@@ -173,5 +164,65 @@
 
         $query_deleteRecette->execute();
     }
+    
+    function getTableIngredient(){
+        require 'Connection.php';
+         //récupération du contenu pour la table donnée
+        $query_TableIngredient = 'SELECT * FROM ingredient';
+        $result_TableIngredient = $pdo->query($query_TableIngredient)->fetchAll();
+        
+        return $result_TableIngredient;
+    }
+    function saveIngredient($idIngredient,$NomIngredient,$PrixUnitaireHT,$Marque,$image){
+        require 'Connection.php';
+         //récupération du contenu pour la table recette
+        $query = 'UPDATE ingredient SET idIngredient ='.$idIngredient.', NomIngredient = "'.$NomIngredient.'"'
+                . ', PrixUnitaireHT='.$PrixUnitaireHT.', Marque="'.$Marque.'", Image_idImage='.$image
+                .' WHERE idIngredient='.$idIngredient.' ';
+        $query_updateRecette = $pdo->prepare($query);
+ 
+        $query_updateRecette->execute();
+    }
+    function createIngredient($NomIngredient,$PrixUnitaireHT,$Marque,$image){
+        require 'Connection.php';
+         //insertion d'une nouvelle ligne dans la table recette
+        $query = 'INSERT INTO ingredient (NomIngredient,PrixUnitaireHT,Marque,Image_idImage)'
+                . ' VALUES ("'.$NomIngredient.'",'.$PrixUnitaireHT.',"'.$Marque.'",'.$image.')';
+        echo $query;
+        $query_createRecette = $pdo->prepare($query);
+
+        $query_createRecette->execute();
+    }
+    function deleteIngredient($idIngredient){
+        require 'Connection.php';
+        
+        $query = 'DELETE FROM ingredient WHERE idIngredient='.$idIngredient.' ';
+        $query_deleteRecette = $pdo->prepare($query);
+
+        $query_deleteRecette->execute();
+    }
+    
+    function getTableUstensile(){}
+    function saveUstensile(){}
+    function createUstensile(){}
+    function deleteUstensile(){}
+    
+    function getTableTag(){}
+    function saveTag(){}
+    function createTag(){}
+    function deleteTag(){}
+    
+    function getImages(){
+        require 'Connection.php';
+        //récupération de l'image correspondant à la recette
+        $query_Images = 'SELECT * FROM image';
+        $result_Images = $pdo->query($query_Images)->fetchAll();
+        
+        return ($result_Images);
+    }
+    function saveImage(){}
+    function createImage(){}
+    function deleteImage(){}
+    
 ?>
 

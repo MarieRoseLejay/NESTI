@@ -1,6 +1,6 @@
 <form name="recipe" action="" method="POST">
     <?php //Si une recette est sélectionnée on ne masque pas le contenu du formulaire
-        // au rechargemetn de la page
+        // au rechargement de la page
         if(isset($_GET['recette'])){
             echo'<button class="btn" type="button" data-toggle="collapse" 
                     data-target="#recipe" aria-expanded="true" aria-controls="recipe">
@@ -15,16 +15,17 @@
         }
     ?>    
         <p class="col-lg-12 "> Choix de la recette :  
-            <select name="choice" onchange="afficher(this.value)">
+            <select name="choice" onchange="afficherRecette(this.value)">
                 <?php //Si l'id est le même que celui dans l'url on ajoute l'attribut selected à <option> 
-                    for($i = -1; $i < $tailletableau; $i++){
-                        if($recettes[$i]['idRecette'] == $_GET['recette']){
-                            echo '<option value="'.$recettes[$i]['idRecette'].'" selected>'.$recettes[$i]['Titre'].'</option>';
-                        }
+                    for($i = -1; $i < $tailletableauR; $i++){
+                        if($i == -1){
+                            echo '<option value=""> </option>';
+                        } 
                         else{
-                            if($i == -1){
-                                echo '<option value=""> </option>';
-                            }else{
+                            if($recettes[$i]['idRecette'] == $idRecette){
+                                echo '<option value="'.$recettes[$i]['idRecette'].'" selected>'.$recettes[$i]['Titre'].'</option>';
+                            }
+                            else{
                                 echo '<option value="'.$recettes[$i]['idRecette'].'">'.$recettes[$i]['Titre'].'</option>';
                             }
                         }
@@ -35,7 +36,7 @@
         <p class="col-lg-12 "> Image correspondante : 
             <select name="image">
                 <?php //Si l'id est le même que celui dans l'url on ajoute l'attribut selected à <option> 
-                    for($i = -1; $i < $tailletableauI; $i++){
+                    for($i = -1; $i < $tailletableauImg; $i++){
                         if($i == -1){
                             echo '<option value=""> </option>';
                         }
@@ -53,6 +54,7 @@
         </p>
         <p class="col-lg-12 "> Titre de la recette : 
             <input type="text" name="title" value="<?php echo $title ?>">
+        </p>
         <p class="col-lg-12 "> Prix HT : 
             <input type="text" name="price" value="<?php echo $prixHT ?>">
         </p>
@@ -77,13 +79,13 @@
         <p class="col-lg-12 "> Budget :  
             <input type="text" name="budget" value="<?php echo $budget ?>">
         </p>
-        <input type="hidden" name="id" value="<?php echo $id ?>">
+        <input type="hidden" name="idRecette" value="<?php echo $idRecette ?>">
         <input type="submit" name="sauvegarder" value="sauvegarder">
         <input type="submit" name="supprimer" value="supprimer la recette">        
-    </div>
+    </div><!-- ouvert avec button ne pas supprimer !-->
 </form>
 <script type="text/javascript" language="javascript">
-    function afficher(idRecette){
+    function afficherRecette(idRecette){
         //on recharge la page en rafraichissant l'url à laquelle on ajoute l'id de la recette sélectionnée 
         if(idRecette === ''){
             document.location = "?page=5";
