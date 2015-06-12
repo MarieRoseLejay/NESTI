@@ -257,7 +257,7 @@
     }
     function saveTag($idTag,$valeur){
         require 'Connection.php';
-         //récupération du contenu pour la table recette
+         //récupération du contenu pour la table tag
         $query = 'UPDATE tag SET Valeur = "'.$valeur.'"'
                 .' WHERE idTag='.$idTag;
         $query_updateTag = $pdo->prepare($query);
@@ -266,7 +266,7 @@
     }
     function createTag($valeur){
         require 'Connection.php';
-         //insertion d'une nouvelle ligne dans la table ustensile
+         //insertion d'une nouvelle ligne dans la table tag
         $query = 'INSERT INTO tag (Valeur)'
                 . ' VALUES ("'.$valeur.'")';
         echo $query;
@@ -283,6 +283,7 @@
         $query_deleteTag->execute();
     }
     
+  
     function getImages(){
         require 'Connection.php';
         //récupération de l'image correspondant à la recette
@@ -291,9 +292,41 @@
         
         return ($result_Images);
     }
-    function saveImage(){}
-    function createImage(){}
-    function deleteImage(){}
+    function getImageId($idImage){
+        require 'Connection.php';
+         //récupération du contenu de la colonne pour la table donnée
+        $query_image = 'SELECT * FROM image WHERE idImage = '.$idImage.'';
+        $result_image = $pdo->query($query_image)->fetchAll();
+        
+        return $result_image;
+    }
+    function saveImage($idImage,$NomFichier,$Legende){
+        require 'Connection.php';
+         //récupération du contenu pour la table image
+        $query = 'UPDATE image SET NomFichier="'.$NomFichier.'",Legende="'.$Legende.'"'
+                .' WHERE idImage='.$idImage;
+        $query_updateImage = $pdo->prepare($query);
+ 
+        $query_updateImage->execute();
+    }
+    function createImage($NomFichier,$Legende){
+        require 'Connection.php';
+         //insertion d'une nouvelle ligne dans la table image
+        $query = 'INSERT INTO image (NomFichier,Legende)'
+                . ' VALUES ("'.$NomFichier.'","'.$Legende.'")';
+        echo $query;
+        $query_createImage = $pdo->prepare($query);
+
+        $query_createImage->execute();
+    }
+    function deleteImage($idImage){
+        require 'Connection.php';
+        
+        $query = 'DELETE FROM image WHERE idImage='.$idImage.' ';
+        $query_deleteImage = $pdo->prepare($query);
+
+        $query_deleteImage->execute();
+    }
     
 ?>
 

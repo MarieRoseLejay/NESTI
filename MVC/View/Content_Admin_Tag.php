@@ -14,32 +14,32 @@
             <div class="titre collapse" id="tag">';
         }
     ?> 
-            <p class="col-lg-12 "> Choix du tag :  
-                <select name="choiceT" onchange="afficherTag(this.value)">
-                    <?php //Si l'id est le même que celui dans l'url on ajoute l'attribut selected à <option> 
-                        for($i = -1; $i < $tailletableauT; $i++){
-                            if($i == -1){
-                                echo '<option value=""> </option>';
+        <p class="col-lg-12 "> Choix du tag :  
+            <select name="choiceT" onchange="afficherTag(this.value)">
+                <?php //Si l'id est le même que celui dans l'url on ajoute l'attribut selected à <option> 
+                    for($i = -1; $i < $tailletableauT; $i++){
+                        if($i == -1){
+                            echo '<option value=""> </option>';
+                        }
+                        else{
+                            if($tags[$i]['idTag'] == $idTag){
+                                echo '<option value="'.$tags[$i]['idTag'].'" selected>'.$tags[$i]['Valeur'].'</option>';
                             }
                             else{
-                                if($tags[$i]['idTag'] == $idTag){
-                                    echo '<option value="'.$tags[$i]['idTag'].'" selected>'.$tags[$i]['Valeur'].'</option>';
-                                }
-                                else{
-                                    echo '<option value="'.$tags[$i]['idTag'].'">'.$tags[$i]['Valeur'].'</option>';
-                                }
+                                echo '<option value="'.$tags[$i]['idTag'].'">'.$tags[$i]['Valeur'].'</option>';
                             }
-                        } 
-                    ?>
-                </select>
-            </p>
-            <p class="col-lg-12 "> Valeur du Tag : 
-                <input type="text" name="valeur" value="<?php echo $valeur ?>">
-            </p>
-            <input type="hidden" name="idTag" value="<?php echo $idTag ?>">
-            <input type="submit" name="sauvegarder" value="sauvegarder">
-            <input type="submit" name="supprimer" value="supprimer le tag">        
-        </div>
+                        }
+                    } 
+                ?>
+            </select>
+        </p>
+        <p class="col-lg-12 "> Valeur du Tag : 
+            <input type="text" name="valeur" value="<?php echo $valeur ?>">
+        </p>
+        <input type="hidden" name="idTag" value="<?php echo $idTag ?>">
+        <input type="submit" name="sauvegarder" value="sauvegarder">
+        <input type="submit" name="supprimer" value="supprimer le tag">        
+    </div>
 </form>
 <script type="text/javascript" language="javascript">
     function afficherTag(idTag){

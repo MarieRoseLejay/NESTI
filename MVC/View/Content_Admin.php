@@ -8,7 +8,7 @@
         <?php require 'View/Content_Admin_Ingredient.php'; ?>
         <?php require 'View/Content_Admin_Ustensil.php'; ?>
         <?php require 'View/Content_Admin_Tag.php'; ?>
-        <!--?php require 'View/Content_Admin_Image.php'; ?-->
+        <?php require 'View/Content_Admin_Image.php'; ?>
         
     </div>
 </p>

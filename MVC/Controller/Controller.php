@@ -134,11 +134,16 @@
         $valeur = "";
         $idTag = 0;
         
+        //initialisation des variables tag
+        $nameImg = "";
+        $legend = "";
+        $idImage = 0;
+        
         //echo "content_Admin\n";
-        //echo $_SERVER["REQUEST_METHOD"];
+        echo $_SERVER["REQUEST_METHOD"];
         //echo "\n";
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            //echo "POST";
+            echo "POST";
             //Gestion des recettes
             if(isset($_POST['idRecette'])){
                 //initialisation des variables
@@ -241,22 +246,30 @@
                 }
             }
             //Gestion des images
-            if(isset($_POST['idImages'])){
+            if(isset($_POST['idImage'])){
+                echo 'POST image';
                 //initialisation des variables
-                if ($_POST['sauvegarder']){
-                    if($idImages == 0){
-                        //ajout de données}
-                    }else{
-                        //sauvegarde des données modifiées
-                    }
-                }
-                elseif ($_POST['supprimer']) {
-                    //suppression des images
+                $nameImg = $_POST["nameImg"];
+                $legend = $_POST["legend"];
+                $idImage = $_POST["idImage"];
+            }
+                
+            if ($_POST['sauvegarder']){
+                if($idImage == 0){
+                    //ajout de données}
+                    createImage($nameImg,$legend);
+                }else{
+                    echo 'save image';
+                    //sauvegarde des données modifiées
+                    saveImage($idImage,$nameImg,$legend);
                 }
             }
+            elseif ($_POST['supprimer']) {
+                //suppression des images
+                deleteImage($idImage);
+            }
         }
-        else
-        {
+        else{
         //Gestion des recettes
             echo "GET";
             //Si une recette est sélectionnée
@@ -309,6 +322,10 @@
             //Si une image est sélectionnée
             if(isset($_GET['image'])){
                 //Pour la ligne de la table image on appelle les colonnes désirées
+                $image = getImageId($_GET['image'])[0];
+                $nameImg = $image['NomFichier'];
+                $legend = $image['Legende'];
+                $idImage = $_GET['image'];
             }
         }
         
