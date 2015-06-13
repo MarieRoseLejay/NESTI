@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 07 Juin 2015 à 17:08
+-- Généré le :  Ven 12 Juin 2015 à 06:08
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -19,6 +19,16 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `alternativecuisine`
 --
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `p_getIdImageShuffleRecette`()
+    NO SQL
+SELECT idImage, NomFichier FROM image,recette WHERE image.idImage=recette.Image_idImage$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `NomFichier` varchar(45) NOT NULL,
   `Legende` varchar(100) NOT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Contenu de la table `image`
@@ -202,14 +212,14 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `Image_idImage` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idIngredient`,`Image_idImage`),
   KEY `fk_Article_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `ingredient`
 --
 
 INSERT INTO `ingredient` (`idIngredient`, `NomIngredient`, `PrixUnitaireHT`, `Marque`, `Image_idImage`) VALUES
-(1, 'Poire', '0.00', 'Terroir', 11),
+(1, 'Poire', '1.00', 'Terroir', 11),
 (2, 'Pomme', '0.20', 'Terroir', 12),
 (3, 'oeuf', '0.00', 'Francinette', 13),
 (4, 'poireau', '0.00', 'Terroir', 14),
@@ -219,6 +229,18 @@ INSERT INTO `ingredient` (`idIngredient`, `NomIngredient`, `PrixUnitaireHT`, `Ma
 (8, 'semoule 1kg', '1.00', 'Francinette', 18),
 (9, 'boeuf 100g', '2.00', 'Fermière', 19),
 (10, 'poulet 100g', '1.00', 'Fermière', 20);
+
+--
+-- Déclencheurs `ingredient`
+--
+DROP TRIGGER IF EXISTS `IngredientListe`;
+DELIMITER //
+CREATE TRIGGER `IngredientListe` BEFORE DELETE ON `ingredient`
+ FOR EACH ROW BEGIN
+	DELETE FROM liste WHERE Ingredient_idIngredient = OLD.idIngredient;
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -254,8 +276,9 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `Difficulte` int(10) unsigned NOT NULL DEFAULT '0',
   `Budget` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idRecette`,`Image_idImage`),
+  UNIQUE KEY `Titre` (`Titre`),
   KEY `fk_Recette_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `recette`
@@ -318,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `idTag` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Valeur` varchar(50) NOT NULL,
   PRIMARY KEY (`idTag`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Contenu de la table `tag`
@@ -328,8 +351,18 @@ INSERT INTO `tag` (`idTag`, `Valeur`) VALUES
 (1, 'froid'),
 (2, 'chaud'),
 (3, 'très chaud'),
-(4, 'test2'),
-(5, 'test3');
+(4, 'végétarien'),
+(7, 'légumes'),
+(8, 'légumes'),
+(9, 'légumes'),
+(10, 'légumes'),
+(11, 'légumes'),
+(12, 'légumes'),
+(13, 'légumes'),
+(14, 'légumes'),
+(15, 'légumes'),
+(16, 'légumes'),
+(17, 'légumes');
 
 --
 -- Déclencheurs `tag`
@@ -359,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `ustensile` (
   `Image_idImage` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idUstensile`,`Image_idImage`),
   KEY `fk_Article_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `ustensile`
@@ -371,7 +404,7 @@ INSERT INTO `ustensile` (`idUstensile`, `NomUstensile`, `PrixUnitaireHT`, `Marqu
 (3, 'Rouleau à pâtisserie', '10.00', 'Alice Mélisse', 23),
 (4, 'Tablier', '4.00', 'Alice Mélisse', 24),
 (5, 'Saladier', '15.00', 'Alice Mélisse', 25),
-(6, 'Plat pour four', '20.00', 'Alice Mélisse', 26),
+(6, 'Plat pour four', '40.00', 'Alice Mélisse', 26),
 (7, 'Spatule', '3.00', 'Alice Mélisse', 27),
 (8, 'Cuillère en bois', '4.00', 'Alice Mélisse', 28),
 (9, 'Minuteur', '10.00', 'Alice Mélisse', 29),
@@ -433,8 +466,8 @@ ALTER TABLE `ingredient`
 -- Contraintes pour la table `liste`
 --
 ALTER TABLE `liste`
-  ADD CONSTRAINT `fk_Recette_has_Ingredient_Recette1` FOREIGN KEY (`Recette_idRecette`) REFERENCES `recette` (`idRecette`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Recette_has_Ingredient_Ingredient1` FOREIGN KEY (`Ingredient_idIngredient`) REFERENCES `ingredient` (`idIngredient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Recette_has_Ingredient_Ingredient1` FOREIGN KEY (`Ingredient_idIngredient`) REFERENCES `ingredient` (`idIngredient`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Recette_has_Ingredient_Recette1` FOREIGN KEY (`Recette_idRecette`) REFERENCES `recette` (`idRecette`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `recette`
