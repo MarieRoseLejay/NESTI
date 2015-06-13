@@ -1,36 +1,43 @@
 <?php // déclenchement de la mise en tampon du flux HTML de sortie
     ob_start();  ?>
 
-<div class="col-lg-12" id="article"> 
-    <div class="col-lg-12" id="article_title">  
+<div class="col-lg-12 article"> 
+    <div class="col-lg-12 article_title">  
         <?php echo $titres; ?>
     </div>
-    <div class="col-lg-12"> 
-        <div class="col-lg-2 col-lg-offset-1"> temps de préparation : 
-            <?php echo $tempsPreparations; ?>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="col-lg-2 clearfix"></div>
+            <div class="col-lg-12 article_img" style="background-image: url('Images/<?php echo $images; ?>')" ></div>
+            <div class="col-lg-11 col-lg-offset-2 article_presentation_summary"> 
+                <?php echo $resumeRecettes; ?>
+            </div>
         </div>
-        <div class="col-lg-2"> temps de cuisson :
-            <?php echo $tempsCuissons; ?>
-        </div>
-        <div class="col-lg-2"> difficulté : 
-            <?php echo $difficultes; ?>
-        </div>
-        <div class="col-lg-2"> budget :
-            <?php echo $budgets; ?>
-        </div>
-        <div class="col-lg-2"> prix de la recette :
-            <?php echo $prixHT; ?>
+        <div class="col-lg-7">
+            <div class="col-lg-12 article_info"> temps de préparation : 
+                <?php echo $tempsPreparations; ?>
+            </div>
+            <div class="col-lg-12 article_info"> temps de cuisson :
+                <?php echo $tempsCuissons; ?>
+            </div>
+            <div class="col-lg-12 article_info"> difficulté : 
+                <?php echo $difficultes; ?>
+            </div>
+            <div class="col-lg-12 article_info"> budget :
+                <?php echo $budgets; ?>
+            </div>
+            <div class="col-lg-12 article_info"> prix de la recette :
+                <?php echo $prixHT; ?> €
+            </div>
+            <div class="col-lg-12 article_info_title"> liste des ingrédients : </div>
+            <div class="col-lg-12 article_info_title"> liste des ustensiles : </div>
         </div>
     </div>
-    <div class="col-lg-12" id="article_presentation"> 
-        <img class="col-lg-3 col-lg-offset-1" id="article_presentation_img" src="Images/<?php echo $images; ?>" alt="recipe"></img>
-        <div class="col-lg-8" id="article_presentation_list"> liste des ingrédients </div>
-        <div class="col-lg-10 col-lg-offset-1" id="article_presentation_summary"> 
-            <?php echo $resumeRecettes; ?>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 article_info_title"> recette : </div>
+        <div class="col-lg-10 col-lg-offset-1">    
+            <?php echo $contenus; ?>
         </div>
-    </div>
-    <div class="col-lg-10 col-lg-offset-1" id="article_recipe"> recette : <br/>
-        <?php echo $contenus; ?>
     </div>
 </div>
 

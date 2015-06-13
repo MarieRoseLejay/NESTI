@@ -127,24 +127,23 @@ a:hover{
 /**** end Home ****/
 
 /**** Category ****/
-#category-title{
-    color: #98b345;
+.category-title{
+    color: #f8b053;
     font-family: Impact, fantasy; 
-    font-size: 18px;
+    font-size: 21px;
     margin-bottom: 10px;
     text-align: center;   
 }
-#category_article{
-    //border : 1px solid violet;
+.category_article{
     margin: 15px;
     margin-right: 43px;
     margin-left: 43px; 
     text-align: center;
 }
-#category_article_title{
+.category_article_title{
     color: #98b345;
     font-family: Impact, fantasy; 
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 5px;
     text-align: center;
 }
@@ -159,11 +158,26 @@ a:hover{
 }/**** end Category ****/
 
 /**** Articles ****/
-#article_title{
+.article_title{
+    color: #f8b053;
+    font-family: Impact, fantasy; 
+    font-size: 21px;
+    margin-bottom: 15px;
+    text-align: center; 
+}
+.article_img{
+    height: 300px; 
+    width: 300px; 
+    margin: 5px;
+    background-repeat: no-repeat; 
+    background-position:center center; 
+    background-size:contain;
+}
+.article_info_title,.article_recipe{
     color: #98b345;
     font-family: Impact, fantasy; 
     font-size: 15px;
-    margin-bottom: 5px;
-    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 /**** end Articles ****/
