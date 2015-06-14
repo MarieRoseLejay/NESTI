@@ -67,6 +67,29 @@
         return $result_recette;
     }
     
+    function getIngredientsRecette($i){
+        require 'Connection.php';
+         //récupération des lignes correspondantes pour l'id de la recette donné
+        $query_IR = 'SELECT * FROM ingredient,liste '
+                        . ' WHERE Recette_idRecette = '.$i
+                        . ' AND idIngredient = Ingredient_idIngredient';
+        $result_IR = $pdo->query($query_IR)->fetchAll();
+        
+        return $result_IR;
+    }
+    
+    function getUstensilesRecette($i){
+        require 'Connection.php';
+         //récupération des lignes correspondantes pour l'id de la recette donné
+        $query_UR = 'SELECT * FROM ustensile,enumere '
+                        . ' WHERE Recette_idRecette = '.$i
+                        . ' AND idUstensile = Ustensile_idUstensile';
+        $result_UR = $pdo->query($query_UR)->fetchAll();
+        
+        return $result_UR;
+    }
+    
+    
     function getIngredient($i){
         require 'Connection.php';
          //récupération du contenu de la colonne pour la table donnée
@@ -76,6 +99,17 @@
         return $result_ingredient;
     }
     
+    function getRecettesIngredient($i){
+        require 'Connection.php';
+         //récupération des lignes correspondantes pour l'id de la recette donné
+        $query_RI = 'SELECT * FROM recette,liste '
+                        . ' WHERE Ingredient_idIngredient = '.$i
+                        . ' AND idRecette = Recette_idRecette';
+        $result_RI = $pdo->query($query_RI)->fetchAll();
+        
+        return $result_RI;
+    }
+    
     function getUstensile($i){
         require 'Connection.php';
          //récupération du contenu de la colonne pour la table donnée
@@ -83,6 +117,17 @@
         $result_ustensile = $pdo->query($query_ustensile)->fetchAll();
         
         return $result_ustensile;
+    }
+    
+    function getRecettesUstensile($i){
+        require 'Connection.php';
+         //récupération des lignes correspondantes pour l'id de la recette donné
+        $query_RU = 'SELECT * FROM recette,enumere '
+                        . ' WHERE Ustensile_idUstensile = '.$i
+                        . ' AND idRecette = Recette_idRecette';
+        $result_RU = $pdo->query($query_RU)->fetchAll();
+        
+        return $result_RU;
     }
 
     function getDifficulte($i){

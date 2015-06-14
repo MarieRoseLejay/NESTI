@@ -30,7 +30,16 @@
                 <?php echo $prixHT; ?> €
             </div>
             <div class="col-lg-12 article_info_title"> liste des ingrédients : </div>
+                <div class="col-lg-12 article_info">
+                    <?php for ($j = 0; $j < $tailleTableauIngredient; $j++){
+                    echo $ingredient[$j].'<br/>';
+                }?>
+            </div>
             <div class="col-lg-12 article_info_title"> liste des ustensiles : </div>
+                <div class="col-lg-12 article_info">
+                    <?php for ($j = 0; $j < $tailleTableauUstensile; $j++){
+                    echo $ustensile[$j].'<br/>';
+                }?>
         </div>
     </div>
     <div class="row">

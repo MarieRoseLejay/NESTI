@@ -46,12 +46,27 @@
         $images = getImage($i,'recette');
         $resumeRecettes = $recette[0]['Resume'];  
         $contenus = $recette[0]['Contenu'];
-        
-        $noms = array();
-        for($i = 1; $i <= 6; $i++){
-            $noms[$i] = getNom($i,'Titre','recette');
-        }
             
+        //Récupération des ingrédients correspondants
+        $ingredients = getIngredientsRecette($i);
+        $tailleTableauIngredient = count($ingredients);
+        for ($j = 0; $j < $tailleTableauIngredient; $j++){
+            $ingredient[$j] = $ingredients[$j]['NomIngredient'];
+        }
+        
+        //Récupération des ustensiles correspondants
+        $ustensiles = getUstensilesRecette($i);
+        $tailleTableauUstensile = count($ustensiles);
+        for ($j = 0; $j < $tailleTableauUstensile; $j++){
+            $ustensile[$j] = $ustensiles[$j]['NomUstensile'];
+        }
+
+        //informations à passer dans l'url
+        $noms = array();
+        for($j = 1; $j <= 6; $j++){
+            $noms[$j] = getNom($j,'Titre','recette');
+        }
+        
         require 'View/Content_Article_Recipe.php';
     }
     
@@ -63,6 +78,14 @@
         $marques = $ingredient[0]['Marque'];
         $images = getImage($i,'ingredient');
         
+        //Récupération des recettes correspondants
+        $recettes = getRecettesIngredient($i);
+        $tailleTableauRecettes = count($recettes);
+        for ($j = 0; $j < $tailleTableauRecettes; $j++){
+            $recette[$j] = $recettes[$j]['Titre'];
+        }
+        
+        //informations à passer dans l'url
         $noms = array();
         for($i = 1; $i <= 6; $i++){
             $noms[$i] = getNom($i,'NomIngredient','ingredient');
@@ -78,7 +101,15 @@
         $prixUnitaireHT = $ustensile[0]['PrixUnitaireHT'];
         $marques = $ustensile[0]['Marque'];
         $images = getImage($i,'ustensile');
-            
+        
+        //Récupération des recettes correspondants
+        $recettes = getRecettesUstensile($i);
+        $tailleTableauRecettes = count($recettes);
+        for ($j = 0; $j < $tailleTableauRecettes; $j++){
+            $recette[$j] = $recettes[$j]['Titre'];
+        }
+        
+        //informations à passer dans l'url
         $noms = array();
         for($i = 1; $i <= 6; $i++){
             $noms[$i] = getNom($i,'NomUstensile','ustensile');
