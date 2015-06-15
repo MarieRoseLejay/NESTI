@@ -14,24 +14,40 @@
         $images = array();
         $resumes = array();
                 
-        for($i = 1; $i <= 6; $i++){
-            $noms[$i] = getNom($i,$nom,$table);
-            $images[$i] = getImage($i,$table);
+        $ids = getTableShuffle($table); 
+        $_SESSION['ids'] = $ids; 
+        for($j = 0; $j < 6; $j++){
+            $id = $ids[$j]; 
+            $noms[$j] = getNom($id,$nom,$table);
+            $images[$j] = getImage($id,$table);
             if($column != ''){
-                $resumes[$i] = getColumn($i,$table,$column);
+                $resumes[$j] = getColumn($id,$table,$column);
             }
         }
+        $_SESSION['noms'] = $noms;
+        $_SESSION['images'] = $images;
+        $_SESSION['resumes'] = $resumes;
+        
         require 'View/Content_Category.php';
     }
     
     function content_Category_Recette(){
+        session_name('recette');
+        session_start();
         content_Category('Titre','recette','Resume','2');
+        session_write_close(); 
     }
     function content_Category_Ingredient(){
+        session_name('ingredient');
+        session_start();
         content_Category('NomIngredient','ingredient','Marque','3');
+        session_write_close();
     }
     function content_Category_Ustensile(){
+        session_name('ustensile');
+        session_start();
         content_Category('NomUstensile','ustensile','Marque','4');
+        session_write_close();
     }
     
     function content_Article_Recette($i,$page){
@@ -62,10 +78,13 @@
         }
 
         //informations à passer dans l'url
-        $noms = array();
-        for($j = 1; $j <= 6; $j++){
-            $noms[$j] = getNom($j,'Titre','recette');
-        }
+        session_name('recette');
+        session_start();
+        
+        $noms = $_SESSION['noms'];
+        $ids = $_SESSION['ids'];
+
+        session_write_close();
         
         require 'View/Content_Article_Recipe.php';
     }
@@ -86,10 +105,13 @@
         }
         
         //informations à passer dans l'url
-        $noms = array();
-        for($i = 1; $i <= 6; $i++){
-            $noms[$i] = getNom($i,'NomIngredient','ingredient');
-        }
+        session_name('ingredient');
+        session_start();
+        
+        $noms = $_SESSION['noms'];
+        $ids = $_SESSION['ids'];
+
+        session_write_close();
             
         require 'View/Content_Article_Ingredient.php';
     }
@@ -110,10 +132,13 @@
         }
         
         //informations à passer dans l'url
-        $noms = array();
-        for($i = 1; $i <= 6; $i++){
-            $noms[$i] = getNom($i,'NomUstensile','ustensile');
-        }
+        session_name('ustensile');
+        session_start();
+        
+        $noms = $_SESSION['noms'];
+        $ids = $_SESSION['ids'];
+
+        session_write_close();
         
         require 'View/Content_Article_Ustensil.php';
     }
@@ -359,6 +384,8 @@
                 $idImage = $_GET['image'];
             }
             
+            
+        //Tests unitaires
             $message = "";
             if(isset($_GET['UT'])){
                 $valeur = "légumes";

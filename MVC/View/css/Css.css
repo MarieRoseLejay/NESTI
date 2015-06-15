@@ -150,11 +150,11 @@ a:hover{
 
 .category_article_img{
     height: 200px; 
-    width:100%; 
+    width: 100%; 
     margin: 5px;
     background-repeat: no-repeat; 
-    background-position:center center; 
-    background-size:contain;
+    background-position: center center; 
+    background-size: contain;
 }/**** end Category ****/
 
 /**** Articles ****/
@@ -181,3 +181,19 @@ a:hover{
     margin-top: 10px;
 }
 /**** end Articles ****/
+/**** Admin ****/
+.admin{
+    color: #f8b053;
+    font-family: Impact, fantasy; 
+    font-size: 21px;
+    margin-bottom: 15px;
+    text-align: center; 
+}
+.admin_tests{
+    text-align: center; 
+}
+.btn{
+    padding: 5px;
+    margin-bottom: 5px;
+}
+/**** end Admin ***/

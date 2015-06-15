@@ -2,16 +2,16 @@
     <?php //Si un Ingredient est sélectionné on ne masque pas le contenu du formulaire
         // au rechargement de la page
         if(isset($_GET['ingredient'])){
-            echo'<button class="btn" type="button" data-toggle="collapse" 
+            echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                     data-target="#ingredient" aria-expanded="true" aria-controls="ingredient">
                     Action sur un article de catégorie Ingrédient </button>
-                <div class="titre collapse in" id="ingredient">';
+                <div class="col-lg-12 col-lg-offset-4 titre collapse in" id="ingredient">';
         } //Sinon le contenu du formulaire est masqué
         else{
-        echo'<button class="btn" type="button" data-toggle="collapse" 
+        echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                 data-target="#ingredient" aria-expanded="false" aria-controls="ingredient">
                 Action sur un article de catégorie Ingrédient </button>
-            <div class="titre collapse" id="ingredient">';
+            <div class="col-lg-12 col-lg-offset-4 titre collapse" id="ingredient">';
         }
     ?> 
     <p class="col-lg-12 "> Choix de l'ingrédient :  

@@ -2,16 +2,16 @@
     <?php //Si un ustensile est sélectionné on ne masque pas le contenu du formulaire
         // au rechargement de la page
         if(isset($_GET['ustensile'])){
-            echo'<button class="btn" type="button" data-toggle="collapse" 
+            echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                     data-target="#ustensile" aria-expanded="true" aria-controls="ustensile">
                     Action sur un article de catégorie ustensile </button>
-                <div class="titre collapse in" id="ustensile">';
+                <div class="col-lg-12 col-lg-offset-4 titre collapse in" id="ustensile">';
         } //Sinon le contenu du formulaire est masqué
         else{
-        echo'<button class="btn" type="button" data-toggle="collapse" 
+        echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                 data-target="#ustensile" aria-expanded="false" aria-controls="ustensile">
                 Action sur un article de catégorie ustensile </button>
-            <div class="titre collapse" id="ustensile">';
+            <div class="col-lg-12 col-lg-offset-4 titre collapse" id="ustensile">';
         }
     ?> 
         <p class="col-lg-12 "> Choix de l'ustensile :  

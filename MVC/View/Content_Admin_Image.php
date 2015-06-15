@@ -2,16 +2,16 @@
     <?php //Si une image est sélectionnée on ne masque pas le contenu du formulaire
         // au rechargement de la page
         if(isset($_GET['image'])){
-            echo'<button class="btn" type="button" data-toggle="collapse" 
+            echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                     data-target="#image" aria-expanded="true" aria-controls="image">
-                    Action sur un article de catégorie image </button>
-                <div class="titre collapse in" id="image">';
+                    Action sur une image </button>
+                <div class="col-lg-12 col-lg-offset-4 titre collapse in" id="image">';
         } //Sinon le contenu du formulaire est masqué
         else{
-        echo'<button class="btn" type="button" data-toggle="collapse" 
+        echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                 data-target="#image" aria-expanded="false" aria-controls="image">
-                Action sur un article de catégorie image </button>
-            <div class="titre collapse" id="image">';
+                Action sur une image </button>
+            <div class="col-lg-12 col-lg-offset-4 titre collapse" id="image">';
         }
     ?> 
         <p class="col-lg-12 "> Choix de l'image

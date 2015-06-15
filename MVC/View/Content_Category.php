@@ -5,7 +5,7 @@
     <!-- title of the category -->
     <div class="col-lg-12 category-title"> Catégorie </div>
     
-    <?php for($i = 1; $i <= 6; $i++){ ?>
+    <?php for($i = 0; $i < 6; $i++){ ?>
         <!--article -->
         <div class="col-lg-3 category_article"> 
             <div class="col-lg-12 category_article_title">  

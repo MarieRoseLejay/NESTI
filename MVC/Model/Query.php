@@ -24,7 +24,27 @@
         }
         return ($res);
     }
-
+    
+    function getTableShuffle($table){
+        require 'Connection.php';
+        $result_recetteTable = null;
+        
+        //récupération des éléments de la table image et de la table recette 
+        $query_recetteTable = 'SELECT * FROM '.$table;
+        $result_recetteTable = $pdo->query($query_recetteTable)->fetchAll(); //donne un tableau
+        //récupération de la taille de la table
+        $tableSize = count($result_recetteTable);
+       
+        $idTable = array();
+        $id = 'id'.ucfirst($table);
+        for ($i = 0; $i <$tableSize; $i++){
+            $idTable[$i] = $result_recetteTable[$i][$id];
+        }
+        //mélange des indexes du tableau 
+        shuffle($idTable);
+        return $idTable;
+    }
+    
     function getNom($i,$nom,$table){
         require 'Connection.php';
         //récupération du titre ou nom de l'article de la recette 
@@ -42,7 +62,6 @@
         $query_NomFichierImage = 'SELECT NomFichier FROM image,'.$table
                 .' WHERE image.idImage='.$table.'.Image_idImage AND '.$table.'.id'.ucfirst($table).' = '.$i.'';
         $result_NomFichierImage = $pdo->query($query_NomFichierImage)->fetchAll();
-        
         $res = $result_NomFichierImage[0]['NomFichier'];
         return ($res);
     }
@@ -369,7 +388,6 @@
          //insertion d'une nouvelle ligne dans la table image
         $query = 'INSERT INTO image (NomFichier,Legende)'
                 . ' VALUES ("'.$NomFichier.'","'.$Legende.'")';
-        echo $query;
         $query_createImage = $pdo->prepare($query);
 
         $query_createImage->execute();

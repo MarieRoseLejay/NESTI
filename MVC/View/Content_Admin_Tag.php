@@ -2,16 +2,16 @@
     <?php //Si un tag est sélectionné on ne masque pas le contenu du formulaire
         // au rechargement de la page
         if(isset($_GET['tag'])){
-            echo'<button class="btn" type="button" data-toggle="collapse" 
+            echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                     data-target="#tag" aria-expanded="true" aria-controls="tag">
-                    Action sur un article de catégorie tag </button>
-                <div class="titre collapse in" id="tag">';
+                    Action sur un tag </button>
+                <div class="col-lg-12 col-lg-offset-4 titre collapse in" id="tag">';
         } //Sinon le contenu du formulaire est masqué
         else{
-        echo'<button class="btn" type="button" data-toggle="collapse" 
+        echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                 data-target="#tag" aria-expanded="false" aria-controls="tag">
-                Action sur un article de catégorie tag </button>
-            <div class="titre collapse" id="tag">';
+                Action sur un tag </button>
+            <div class="col-lg-12 col-lg-offset-4 titre collapse" id="tag">';
         }
     ?> 
         <p class="col-lg-12 "> Choix du tag :  

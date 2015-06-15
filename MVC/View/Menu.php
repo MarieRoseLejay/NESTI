@@ -11,9 +11,9 @@
 <div class="row menu_line">
     <?php 
         if(isset($noms)){
-          for ($i = 1; $i <=6; $i++){
+          for ($i = 0; $i <6; $i++){
             echo '<div class="col-lg-2 menu_sous-menu " >
-                    <a class="highlight" href="?page='.$page.'&id='.$i.'&nom='.$noms[$i].'">'.$noms[$i].' </a>'
+                    <a class="highlight" href="?page='.$page.'&id='.$ids[$i].'&nom='.$noms[$i].'">'.$noms[$i].' </a>'
                 . '</div>';
           }
         }

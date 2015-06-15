@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 12 Juin 2015 à 06:08
+-- Généré le :  Lun 15 Juin 2015 à 21:20
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -124,6 +124,39 @@ CREATE TABLE IF NOT EXISTS `enumere` (
   KEY `fk_Recette_has_Ustensile_Recette1_idx` (`Recette_idRecette`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `enumere`
+--
+
+INSERT INTO `enumere` (`Recette_idRecette`, `Ustensile_idUstensile`) VALUES
+(2, 1),
+(3, 1),
+(9, 1),
+(4, 2),
+(5, 2),
+(1, 4),
+(2, 4),
+(3, 4),
+(4, 4),
+(5, 4),
+(6, 4),
+(9, 4),
+(10, 4),
+(11, 4),
+(1, 5),
+(4, 5),
+(5, 6),
+(6, 6),
+(1, 7),
+(5, 7),
+(6, 7),
+(1, 10),
+(10, 12),
+(2, 13),
+(3, 13),
+(11, 13),
+(10, 14);
+
 -- --------------------------------------------------------
 
 --
@@ -135,23 +168,15 @@ CREATE TABLE IF NOT EXISTS `image` (
   `NomFichier` varchar(45) NOT NULL,
   `Legende` varchar(100) NOT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 --
 -- Contenu de la table `image`
 --
 
 INSERT INTO `image` (`idImage`, `NomFichier`, `Legende`) VALUES
-(1, 'GacheVendeenne.jpg', 'Gâche vendéenne'),
-(2, 'ClafoutisTomatesCerises.jpg', 'Clafoutis aux tomates cerises'),
-(3, 'ChouRougePommes.jpg', 'Chou rouge aux pommes'),
-(4, 'FiletsCabillaudSauceCitron.jpg', 'Filets de cabillaud sauce citron'),
-(5, 'TartelettesCitronVert.jpg', 'Tartelettes au citron vert.jpg'),
 (6, 'OeufCocotte.jpg', 'Oeuf cocotte'),
-(7, 'CarpaccioRadisNoir.jpg', 'Carpaccio de radis noir.jpg'),
 (8, 'Pommee.jpg', 'Pommée'),
-(9, 'TartePoiresChocolat.jpg', 'Tarte aux poires et au chocolat'),
-(10, 'BiscuitsAvoine.jpg', 'Biscuits à l''avoine'),
 (11, 'Poire.jpg', 'Poire'),
 (12, 'Pomme.jpg', 'Pomme'),
 (13, 'Oeuf.png', 'Oeuf'),
@@ -173,7 +198,26 @@ INSERT INTO `image` (`idImage`, `NomFichier`, `Legende`) VALUES
 (29, 'Minuteur.jpg', 'Minuteur'),
 (30, 'VerreMesureur.jpg', 'Verre mesureur'),
 (31, 'LogoNesti.jpg', 'lesuperbelogonesti'),
-(32, 'LogoNesti.jpg', 'lesuperbelogonesti');
+(32, 'LogoNesti.jpg', 'lesuperbelogonesti'),
+(33, 'Beurre.jpg', 'Beurre doux'),
+(34, 'Poele.jpg', 'Poele'),
+(35, 'OeufsSurPlat.jpg', 'OeufsSurPlat'),
+(36, 'Pain.jpg', 'Pain'),
+(37, 'PommeDeTerre.jpg', 'Pomme de terre'),
+(38, 'Sel.jpg', 'Sel'),
+(39, 'Poivre.jpg', 'Poivre'),
+(40, 'SucrePoudre.jpg', 'Sucre en poudre'),
+(41, 'Yaourt.jpg', 'Yaourt'),
+(42, 'Casserole.jpg', 'Casserole'),
+(48, 'OeufCoque.jpg', 'Oeuf à la coque'),
+(63, 'PateBrisee.jpg', 'Pâte brisée'),
+(65, 'LaitAmande.jpg', 'Lait d''amande'),
+(67, 'ramequin.jpg', 'ramequin'),
+(69, 'Amandes.jpg', 'Amandes décortiquées 100g'),
+(71, 'CompotePomme.jpg', 'Compote de pommes'),
+(74, 'Crepes.jpg', 'Crêpes'),
+(77, 'Puree.jpg', 'Purée'),
+(80, 'Omelette.jpg', 'Omelette');
 
 -- --------------------------------------------------------
 
@@ -212,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `Image_idImage` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idIngredient`,`Image_idImage`),
   KEY `fk_Article_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `ingredient`
@@ -221,14 +265,22 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 INSERT INTO `ingredient` (`idIngredient`, `NomIngredient`, `PrixUnitaireHT`, `Marque`, `Image_idImage`) VALUES
 (1, 'Poire', '1.00', 'Terroir', 11),
 (2, 'Pomme', '0.20', 'Terroir', 12),
-(3, 'oeuf', '0.00', 'Francinette', 13),
-(4, 'poireau', '0.00', 'Terroir', 14),
-(5, 'farine', '2.00', 'Francinette', 15),
-(6, 'chocolat', '1.00', 'Côte d''os', 16),
-(7, 'lait  1L', '1.00', 'Francinette', 17),
-(8, 'semoule 1kg', '1.00', 'Francinette', 18),
-(9, 'boeuf 100g', '2.00', 'Fermière', 19),
-(10, 'poulet 100g', '1.00', 'Fermière', 20);
+(3, 'Oeuf', '0.00', 'Francinette', 13),
+(4, 'Poireau', '0.00', 'Terroir', 14),
+(5, 'Farine', '2.00', 'Francinette', 15),
+(6, 'Chocolat', '1.00', 'Côte d''os', 16),
+(7, 'Lait  1L', '1.00', 'Francinette', 17),
+(8, 'Semoule 1kg', '1.00', 'Francinette', 18),
+(9, 'Boeuf 100g', '2.00', 'Fermière', 19),
+(10, 'Poulet 100g', '1.00', 'Fermière', 20),
+(12, 'Beurre', '2.00', 'LaMotte', 33),
+(13, 'Pain', '1.00', 'Francinette', 36),
+(14, 'Pomme de terre', '0.20', 'LaPataterie', 37),
+(15, 'Sel 100g', '1.00', 'LaMarée', 38),
+(16, 'Poivre 10g', '2.00', 'LeCheminDesEpices', 39),
+(17, 'Sucre en poudre 1kg', '3.00', 'LaSucrière', 40),
+(18, 'Yaourt ', '1.00', 'LaYaourterie', 41),
+(19, 'Amandes décortiquées 100g', '3.00', 'LeCheminDesEpices', 69);
 
 --
 -- Déclencheurs `ingredient`
@@ -256,6 +308,35 @@ CREATE TABLE IF NOT EXISTS `liste` (
   KEY `fk_Recette_has_Ingredient_Recette1_idx` (`Recette_idRecette`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `liste`
+--
+
+INSERT INTO `liste` (`Recette_idRecette`, `Ingredient_idIngredient`) VALUES
+(2, 2),
+(4, 3),
+(5, 3),
+(6, 3),
+(10, 3),
+(11, 3),
+(1, 5),
+(4, 5),
+(1, 12),
+(6, 12),
+(11, 13),
+(3, 14),
+(1, 15),
+(3, 15),
+(5, 15),
+(10, 15),
+(11, 15),
+(3, 16),
+(5, 16),
+(10, 16),
+(1, 17),
+(4, 17),
+(9, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -267,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `Titre` varchar(100) NOT NULL,
   `Format` enum('Ecrit','Vidéo') NOT NULL DEFAULT 'Ecrit',
   `PrixHT` decimal(10,2) unsigned NOT NULL,
-  `Resume` varchar(100) NOT NULL,
+  `Resume` varchar(34) NOT NULL,
   `Contenu` varchar(300) NOT NULL,
   `Image_idImage` int(10) unsigned NOT NULL,
   `Temps_Preparation` varchar(6) NOT NULL DEFAULT '30 min',
@@ -277,22 +358,25 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `Budget` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idRecette`,`Image_idImage`),
   UNIQUE KEY `Titre` (`Titre`),
+  UNIQUE KEY `Titre_2` (`Titre`),
+  UNIQUE KEY `Titre_3` (`Titre`,`Resume`),
   KEY `fk_Recette_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `recette`
 --
 
 INSERT INTO `recette` (`idRecette`, `Titre`, `Format`, `PrixHT`, `Resume`, `Contenu`, `Image_idImage`, `Temps_Preparation`, `Temps_Cuisson`, `Note`, `Difficulte`, `Budget`) VALUES
-(1, 'Gâche Vendéenne', 'Ecrit', '1.00', 'Comment faire une bonne gâche vendéenne !', 'Faire bouillir le lait avec la demi gousse de vanille fendue en deux.\r\n\r\nDans une grande terrine, versez la farine, faire un puits, ajoutez le sel, cassez les 2 oeufs, ajoutez le sucre et le beurre ramolli détaillé en petits morceaux.\r\n\r\nDélayez la levure dans un verre de lait tiède, travaillez la p', 1, '30', '30', 5, 2, 1),
-(2, 'Clafoutis aux tomates cerises', 'Ecrit', '1.00', 'Comment faire un bon clafoutis aux tomates cerises !', 'Etaler la pâte brisée dans un moule à tarte. Disposer les tomates sur le fond. Ciseler le persil et en parsemer les tomates.Battre les œufs et la crème fraîche. Saler, poivrer. Verser la préparation sur la tarte et cuire au four (180°C) pendant une demi-heure.', 2, '20', '30', 0, 0, 0),
-(3, 'Chou rouge aux pommes', 'Ecrit', '1.00', 'Comment préparer un bon chou rouge aux pommes !  ', '1 Lavez et taillez le chou en lanières. Pelez et coupez les oignons en fines rondelles. Pelez les pommes, coupez-les en quartiers, épépinez-les et émincez-les en fines lamelles. Préchauffez le four th. 6 (180 °C).\r\n2 Déposez au fond de 4 moules à soufflé individuels un petit morceau de lard fumé. Ta', 3, '', '', 0, 0, 0),
-(4, 'Filets de cabillaud sauce citron', 'Ecrit', '1.00', 'Comment  cuisiner de bons filets de cabillaud à la sauce citron !', '1 Brossez les citrons sous l’eau chaude. Prélevez le zeste et pressez le jus de l’un, coupez l’autre en rondelles.\r\n2 Dans une sauteuse, faites fondre le beurre et faites-y dorer les filets de cabillaud 5 minutes sur chaque face. Saupoudrez de gingembre, salez et poivrez.\r\n3 Ajoutez la sauce soja, l', 4, '', '', 0, 0, 0),
-(5, 'Tartelettes au citron vert ', 'Ecrit', '1.00', 'Comment cuisiner de bonnes Tartelettes au citron vert !', '1 Préchauffez le four th. 6 (180 °C). Mixez les spéculoos. Mélangez-les avec le beurre. Garnissez-en 4 moules à tartelettes. Aplatissez la pâte avec le fond d’un verre en la faisant remonter sur le bord des moules.\r\n2 Fouettez les jaunes d’œufs avec le lait concentré, le zeste râpé d’1 citron et le ', 5, '', '', 0, 0, 0),
-(6, 'Oeuf cocotte', 'Ecrit', '1.00', 'Comment  cuisiner un bon oeuf cocotte !', '1 Préchauffez le four à 200 °C.\r\n2 Beurrez 4 ramequins allant au four et ajoutez-y la crème.\r\n3 Cassez l’œuf par-dessus, salez puis poivrez.\r\n4 Mettez les ramequins dans un plat allant au four rempli d''eau bouillante.\r\n5 Enfournez 10 à 15 min environ, selon la cuisson souhaitée.\r\n6 Ciselez la ciboul', 6, '', '', 0, 0, 0),
-(9, 'Lait d''amande', 'Ecrit', '1.00', 'Comment fabriquer du bon lait d''amande !', 'Placer 100g d''amande décortiquées dans un mixeur. Recouvrir d''eau, mixer puis filtrer. C''est prêt !', 17, '10', '0', 5, 1, 1),
-(11, 'Oeufs sur le plat', 'Ecrit', '1.00', 'De bons oeufs sur le plat !', 'Oeufs sur le plat', 13, '5', '5', 1, 1, 1);
+(1, 'Pâte brisée', 'Ecrit', '1.00', 'Une pâte brisée réussie !', 'Mélangez 250g de farine, 10cL d''eau,10cL de beurre fondu. Ajoutez du sel ou du sucre selon ce que vous désirez.', 63, '15', '0', 3, 1, 1),
+(2, 'Compote de pommes', 'Ecrit', '1.00', 'Un bonne compote de pommes !', 'Eplucher et découper les pomes en morceaux. Dans une casserole faire cuire avec moitié d''eau pendant 15 minutes. Mixer.', 71, '30', '15', 5, 1, 1),
+(3, 'Purée de pommes de terre', 'Ecrit', '1.00', 'Une bonne purée maison !', 'Eplucher les pommes de terre. Les cuire avec moitié d''eau salée pendant 30 minutes.Poivrer.Mixer', 77, '30', '30', 2, 2, 1),
+(4, 'Crêpes', 'Ecrit', '1.00', 'De bonnes crêpes !', 'Mélanger 250g de farine avec1L de lait et 3 oeufs. Sucrer.', 74, '10', '0', 3, 1, 1),
+(5, 'Omelette ', 'Ecrit', '1.00', 'De bonnes Tartelettes au citron ve', 'Battre les œufs dans un saladier. Puis dans une poêle chaude et beurrée verser le mélange. Saler, poivrer. Laisser cuire jusqu''à ce que le mélange soit solide.', 80, '5', '5', 1, 1, 1),
+(6, 'Oeufs sur le plat', 'Ecrit', '1.00', 'De bons oeufs sur le plat  !', 'Placer une noisette de beurre dans une casserole chaude. Cassez les oeufs au-dessus. Laisser cuir jusqu''à ce que le blanc d''oeuf soit blanc. Servir', 35, '5', '5', 1, 1, 1),
+(9, 'Lait d''amande', 'Ecrit', '1.00', 'Un déliciceux lait d''amande !', 'Placer 100g d''amande décortiquées dans un mixeur. Recouvrir d''eau, mixer puis filtrer. C''est prêt !', 65, '10', '0', 5, 1, 1),
+(10, 'Oeuf cocotte', 'Ecrit', '1.00', 'Un bon œuf cocotte !', 'Préchauffez le four à 200 °C.Beurrez 4 ramequins allant au four.Cassez l’œuf par-dessus, salez puis poivrez.Mettez les ramequins dans un plat allant au four rempli d''eau bouillante.Enfournez 10 à 15 min environ, selon la cuisson souhaitée.', 6, '5', '5', 1, 1, 1),
+(11, 'Oeuf à la coque', 'Ecrit', '1.00', 'De bons oeufs à la coque !', 'Immergez les oeufs dans l''eau bouillante pendant 1''30 minute. Sortez les de l''eau ôter le chapeau, saler, déguster avec des lamelles de pain.', 48, '2', '1''30', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -341,28 +425,19 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `idTag` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Valeur` varchar(50) NOT NULL,
   PRIMARY KEY (`idTag`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Contenu de la table `tag`
 --
 
 INSERT INTO `tag` (`idTag`, `Valeur`) VALUES
-(1, 'froid'),
-(2, 'chaud'),
-(3, 'très chaud'),
-(4, 'végétarien'),
-(7, 'légumes'),
+(1, 'oeuf'),
+(2, 'farine'),
+(3, 'sel'),
+(4, 'poivre'),
 (8, 'légumes'),
-(9, 'légumes'),
-(10, 'légumes'),
-(11, 'légumes'),
-(12, 'légumes'),
-(13, 'légumes'),
-(14, 'légumes'),
-(15, 'légumes'),
-(16, 'légumes'),
-(17, 'légumes');
+(24, 'beurre');
 
 --
 -- Déclencheurs `tag`
@@ -392,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `ustensile` (
   `Image_idImage` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idUstensile`,`Image_idImage`),
   KEY `fk_Article_Image1_idx` (`Image_idImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `ustensile`
@@ -404,11 +479,14 @@ INSERT INTO `ustensile` (`idUstensile`, `NomUstensile`, `PrixUnitaireHT`, `Marqu
 (3, 'Rouleau à pâtisserie', '10.00', 'Alice Mélisse', 23),
 (4, 'Tablier', '4.00', 'Alice Mélisse', 24),
 (5, 'Saladier', '15.00', 'Alice Mélisse', 25),
-(6, 'Plat pour four', '40.00', 'Alice Mélisse', 26),
+(6, 'Poele', '30.00', 'AliceMélisse', 34),
 (7, 'Spatule', '3.00', 'Alice Mélisse', 27),
 (8, 'Cuillère en bois', '4.00', 'Alice Mélisse', 28),
 (9, 'Minuteur', '10.00', 'Alice Mélisse', 29),
-(10, 'Verre mesureur', '5.00', 'Alice Mélisse', 30);
+(10, 'Verre mesureur', '5.00', 'Alice Mélisse', 30),
+(12, 'Plat pour four', '40.00', 'Alice Mélisse', 26),
+(13, 'Casserole', '10.00', 'Tefol', 42),
+(14, 'Ramequin', '1.00', 'LaFabrique', 67);
 
 --
 -- Contraintes pour les tables exportées

@@ -2,16 +2,16 @@
     <?php //Si une recette est sélectionnée on ne masque pas le contenu du formulaire
         // au rechargement de la page
         if(isset($_GET['recette'])){
-            echo'<button class="btn" type="button" data-toggle="collapse" 
+            echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                     data-target="#recipe" aria-expanded="true" aria-controls="recipe">
                     Action sur un article de catégorie Recette </button>
-                <div class="titre collapse in" id="recipe">';
+                <div class="col-lg-12 col-lg-offset-4 titre collapse in" id="recipe">';
         } //Sinon le contenu du formulaire est masqué
         else{
-        echo'<button class="btn" type="button" data-toggle="collapse" 
+        echo'<button class="col-lg-12 btn" type="button" data-toggle="collapse" 
                 data-target="#recipe" aria-expanded="false" aria-controls="recipe">
                 Action sur un article de catégorie Recette </button>
-            <div class="titre collapse" id="recipe">';
+            <div class="col-lg-12 col-lg-offset-4 titre collapse" id="recipe">';
         }
     ?>    
         <p class="col-lg-12 "> Choix de la recette :  

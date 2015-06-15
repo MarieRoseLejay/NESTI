@@ -1,8 +1,8 @@
 <?php // déclenchement de la mise en tampon du flux HTML de sortie
     ob_start();  ?>
 
-<p class="col-lg-12"> 
-    Partie administrateur : 
+<p class="col-lg-12 admin"> 
+    Partie administrateur 
     <div class="row">
         <?php require 'View/Content_Admin_Recipe.php'; ?>
         <?php require 'View/Content_Admin_Ingredient.php'; ?>
@@ -10,8 +10,14 @@
         <?php require 'View/Content_Admin_Tag.php'; ?>
         <?php require 'View/Content_Admin_Image.php'; ?>
     </div>
-    <a href="?page=5&UT" > test unitaires </a>
-    <div><?php echo $message ?></div>
+    <div class="col-lg-12 admin_tests">
+        <a href="?page=5&UT" > test unitaires </a> 
+        <?php if(isset($_GET['UT'])){
+            echo '<br/>'.$message ;
+        }?>
+    </div>
+        
+   
 </p>
 
 
